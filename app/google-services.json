@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "256680452034",
+    "firebase_url": "https://miloudi-45a5e-default-rtdb.firebaseio.com",
+    "project_id": "miloudi-45a5e",
+    "storage_bucket": "miloudi-45a5e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:256680452034:android:84a8734d83eea94eb2805b",
+        "android_client_info": {
+          "package_name": "com.example.mealer24"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "256680452034-fc7mj9scc6oqms2m1823u7alqgdsk33a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBR-OzRpSDMDIwHpGN9-cuKUWnTHle2xVA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "256680452034-fc7mj9scc6oqms2m1823u7alqgdsk33a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:256680452034:android:1ae4577d06264934b2805b",
+        "android_client_info": {
+          "package_name": "com.seg2505.miloudi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "256680452034-fc7mj9scc6oqms2m1823u7alqgdsk33a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBR-OzRpSDMDIwHpGN9-cuKUWnTHle2xVA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "256680452034-fc7mj9scc6oqms2m1823u7alqgdsk33a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
