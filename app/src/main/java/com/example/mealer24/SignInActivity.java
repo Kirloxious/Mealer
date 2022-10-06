@@ -15,6 +15,7 @@ public class SignInActivity extends AppCompatActivity {
     private EditText sign_in_password;
     private Button sign_in_login_button;
     private Button sign_in_sign_up_button;
+    private String role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,21 +27,27 @@ public class SignInActivity extends AppCompatActivity {
         sign_in_password = findViewById(R.id.SignInPassword);
         sign_in_login_button = findViewById(R.id.SignInLoginButton);
         sign_in_sign_up_button = findViewById(R.id.SignInSignUpButton);
+        role = getIntent().getStringExtra("Role");
 
         setSignInTextAccordingToRole();
         hideSignUpButtonIfAdmin();
+        sign_in_sign_up_button.setOnClickListener(this::sendToSignUpPage);
     }
 
     private void setSignInTextAccordingToRole() {
         String text = sign_in_text.getText().toString();
-        String role = getIntent().getStringExtra("Role");
         sign_in_text.setText(text + " " + role);
     }
 
     private void hideSignUpButtonIfAdmin() {
-        String role = getIntent().getStringExtra("Role");
         if(role.equalsIgnoreCase("admin")) {
             sign_in_sign_up_button.setVisibility(View.GONE);
         }
+    }
+
+    private void sendToSignUpPage(View view) {
+        Intent intent = new Intent(this, SignUpActivity.class);
+        intent.putExtra("Role", role);
+        startActivity(intent);
     }
 }
