@@ -1,5 +1,5 @@
-package core;
-//package com.example.mealer24;
+package com.example.mealer24;
+import com.google.firebase.*;
 
 /**
  * Class Account
@@ -11,8 +11,10 @@ public class Account {
 	private String nomFamille;
 	private String address;
 	private Boolean logInStatus;
-	
+
 	//Constructor
+	public Account(){};
+
 	public Account(String email, String pwd, String nom, String address) {
 		this.address = address;
 		this.email= email;
@@ -27,7 +29,7 @@ public class Account {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public String getPwd() {
 		return pwd;
 	}
@@ -36,7 +38,7 @@ public class Account {
 		//check if password matches password on account. if yes return true.use this.
 		return false;
 	}
-	
+
 	public String getNom() {
 		return nom;
 	}
@@ -61,10 +63,12 @@ public class Account {
 		//if not then redirect or suggest to create a new account
 		//change login status if login successful
 		return logInStatus;
-	
 	}
 	public void logOut() {
 		logInStatus = false;
 	}
-	
+
+
+
+
 }

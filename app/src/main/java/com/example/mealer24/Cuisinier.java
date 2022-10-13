@@ -1,4 +1,4 @@
-package core;
+package com.example.mealer24;
 import java.util.LinkedList;
 
 public class Cuisinier extends Account {
@@ -10,6 +10,8 @@ public class Cuisinier extends Account {
 	private LinkedList<Plaintes> cuisinierPlaintes = new LinkedList<Plaintes>();
 	private int nombreRepasVendu;
 	private String status = "travaille";
+
+
 	public Cuisinier(String email, String pwd, String nom, String address, String description) {
 		super(email, pwd, nom, address);
 		this.description = description;

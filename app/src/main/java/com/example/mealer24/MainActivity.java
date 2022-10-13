@@ -8,11 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.*;
+
 public class MainActivity extends AppCompatActivity {
     private TextView welcome_text;
     private Button sign_in_as_cuisinier;
     private Button sign_in_as_client;
     private Button sign_in_as_admin;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         sign_in_as_client.setOnClickListener(this::SendToSignInPage);
         sign_in_as_admin.setOnClickListener(this::SendToSignInPage);
         sign_in_as_cuisinier.setOnClickListener(this::SendToSignInPage);
+
     }
 
     public void SendToSignInPage(View view) {

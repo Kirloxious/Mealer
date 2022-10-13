@@ -1,4 +1,4 @@
-package core;
+package com.example.mealer24;
 
 public class Plaintes {
 	private Cuisinier cuisinierQuiADesPlaintes;
