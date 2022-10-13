@@ -12,6 +12,7 @@ public class Client extends Account {
 		super(email, pwd, nom, address);
 		creditCardInfo = cci;
 	}
+
 	public LinkedList<DemandeAchat> getTousRepas() {
 		return tousRepas;
 	}
