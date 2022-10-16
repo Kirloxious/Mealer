@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.*;
@@ -27,6 +29,19 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText signUpPassword;
     private EditText signUpUsername;
     private Button btnRegister;
+    private EditText signUpFirstName;
+    private EditText signUpLastName;
+    private EditText signUpStreetAddress;
+    private EditText signUpCity;
+    private EditText signUpPostal;
+    private TextView signUpCreditCardInfotext;
+    private EditText signUpCardNumber;
+    private EditText signUpExpirationDate;
+    private EditText signUpCVV;
+    private TextView signUpVoidChequetext;
+    private EditText signUpVoidCheque;
+    private TextView signUpUserDescriptiontext;
+    private EditText signUpUserDescription;
 
 
     @Override
@@ -34,13 +49,32 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        //Type of account being created
+        role = getIntent().getStringExtra("Role");
 
         signUpEmail = findViewById(R.id.SignUpEmail);
         signUpPassword = findViewById(R.id.SignUpPassword);
         signUpUsername = findViewById(R.id.SignUpUsername);
         btnRegister = findViewById(R.id.RegisterButton);
+        signUpFirstName = findViewById(R.id.SignUpFirstName);
+        signUpLastName = findViewById(R.id.SignUpLastName);
+        signUpStreetAddress = findViewById(R.id.SignUpStreet);
+        signUpCity = findViewById(R.id.SignUpCity);
+        signUpPostal = findViewById(R.id.SignUpPostal);
+        signUpCreditCardInfotext = findViewById(R.id.SignUpCreditCardText);
+        signUpCardNumber = findViewById(R.id.SignUpCardNumber);
+        signUpExpirationDate = findViewById(R.id.SignUpExpiration);
+        signUpCVV = findViewById(R.id.SignUpCVV);
+        signUpVoidChequetext = findViewById(R.id.SignUpVoidCheckText);
+        signUpVoidCheque = findViewById(R.id.SignUpVoidCheque);
+        signUpUserDescriptiontext = findViewById(R.id.SignUpTextInformation);
+        signUpUserDescription = findViewById(R.id.SignUpInformation);
+
+
+        SignUpHide();
 
         btnRegister.setOnClickListener(view -> {createAccount();});
+
 
     }
 
@@ -49,9 +83,6 @@ public class SignUpActivity extends AppCompatActivity {
         //Get database instance
         rootNode = FirebaseDatabase.getInstance();
 
-
-        //Type of account being created
-        role = getIntent().getStringExtra("Role");
 
         //Get email & password inputs
         String email = signUpEmail.getText().toString();
@@ -107,5 +138,18 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     }
-
+    private void SignUpHide(){
+        if(role.equalsIgnoreCase("cuisinier")){
+            signUpCreditCardInfotext.setVisibility(View.GONE);
+            signUpCardNumber.setVisibility(View.GONE);
+            signUpCVV.setVisibility(View.GONE);
+            signUpExpirationDate.setVisibility(View.GONE);
+        }
+        if (role.equalsIgnoreCase("client")){
+            signUpVoidCheque.setVisibility(View.GONE);
+            signUpVoidChequetext.setVisibility(View.GONE);
+            signUpUserDescription.setVisibility(View.GONE);
+            signUpUserDescriptiontext.setVisibility(View.GONE);
+        }
+    }
 }
