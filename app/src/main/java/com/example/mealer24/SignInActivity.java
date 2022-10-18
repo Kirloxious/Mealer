@@ -1,5 +1,6 @@
 package com.example.mealer24;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,6 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignInActivity extends AppCompatActivity {
     private TextView sign_in_text;
@@ -31,12 +39,54 @@ public class SignInActivity extends AppCompatActivity {
 
         setSignInTextAccordingToRole();
         hideSignUpButtonIfAdmin();
+        sign_in_login_button.setOnClickListener(this::sendToHomeScreen);
         sign_in_sign_up_button.setOnClickListener(this::sendToSignUpPage);
+    }
+
+    private void sendToHomeScreen(View view) {
+        String username = sign_in_email.getText().toString();
+        String password = sign_in_password.getText().toString();
+
+        String user_path = "Users/" + transformRoleToDbPath(role) + "/" + username;
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(user_path);
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(!snapshot.exists()) {
+                    showMessage("Username or password does not exist!");
+                    return;
+                }
+
+                Account user_acc = snapshot.getValue(Account.class);
+                if(user_acc.getPwd().equals(password)) {
+                    //send to home page
+                    showMessage("Login successful");
+                    return;
+                }
+
+                showMessage("Username or password does not exist!");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+    }
+    private void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     private void setSignInTextAccordingToRole() {
         String text = sign_in_text.getText().toString();
         sign_in_text.setText(text + " " + role);
+    }
+
+    private String transformRoleToDbPath(String role) {
+        if(role.equalsIgnoreCase("cuisinier")) return "Cuisiniers";
+        if(role.equalsIgnoreCase("client")) return "Clients";
+        if(role.equalsIgnoreCase("admin")) return "Admins";
+        showMessage("This should never happen");
+        return null;
     }
 
     private void hideSignUpButtonIfAdmin() {
