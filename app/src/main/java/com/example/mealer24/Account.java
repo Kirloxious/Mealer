@@ -15,10 +15,11 @@ public class Account {
 	//Constructor
 	public Account(){};
 
-	public Account(String email, String pwd, String nom, String address) {
+	public Account(String email, String pwd, String nom, String nomFamille, String address) {
 		this.address = address;
 		this.email= email;
 		this.nom = nom;
+		this.nomFamille = nomFamille;
 		this.pwd= pwd;
 		logInStatus = false;
 	}

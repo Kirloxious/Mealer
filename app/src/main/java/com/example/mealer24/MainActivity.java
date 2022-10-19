@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import com.google.firebase.database.*;
 
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+
 public class MainActivity extends AppCompatActivity {
     private TextView welcome_text;
     private Button sign_in_as_cuisinier;
@@ -42,4 +45,6 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("Role", button_clicked.getText().toString());
         startActivity(intent);
     }
+
+
 }

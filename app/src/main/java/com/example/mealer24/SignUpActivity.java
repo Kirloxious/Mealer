@@ -15,8 +15,10 @@ import android.widget.Toast;
 import com.google.firebase.database.*;
 
 
-public class SignUpActivity extends AppCompatActivity {
 
+
+public class SignUpActivity extends AppCompatActivity {
+    private String TAG = "SignUpActivity";
 
     private String role;
 
@@ -27,8 +29,8 @@ public class SignUpActivity extends AppCompatActivity {
     //Layout
     private EditText signUpEmail;
     private EditText signUpPassword;
-    private EditText signUpUsername;
     private Button btnRegister;
+
     private EditText signUpFirstName;
     private EditText signUpLastName;
     private EditText signUpStreetAddress;
@@ -54,7 +56,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         signUpEmail = findViewById(R.id.SignUpEmail);
         signUpPassword = findViewById(R.id.SignUpPassword);
-        signUpUsername = findViewById(R.id.SignUpUsername);
         btnRegister = findViewById(R.id.RegisterButton);
         signUpFirstName = findViewById(R.id.SignUpFirstName);
         signUpLastName = findViewById(R.id.SignUpLastName);
@@ -71,6 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
         signUpUserDescription = findViewById(R.id.SignUpInformation);
 
 
+
         SignUpHide();
 
         btnRegister.setOnClickListener(view -> {createAccount();});
@@ -84,40 +86,56 @@ public class SignUpActivity extends AppCompatActivity {
         rootNode = FirebaseDatabase.getInstance();
 
 
-        //Get email & password inputs
+        //Get inputs as strings
         String email = signUpEmail.getText().toString();
+        //get encoded email to input in firebase
+        UTF8Encoder encodedEmail = new UTF8Encoder(email);
+        String encodedEmailAsString = encodedEmail.getEncodedString();
         String password = signUpPassword.getText().toString();
-        String username = signUpUsername.getText().toString();
+        String nom = signUpFirstName.getText().toString();
+        String nomFamille = signUpLastName.getText().toString();
+        String streetAddress = signUpStreetAddress.getText().toString();
+        String city = signUpCity.getText().toString();
+        String postalCode = signUpPostal.getText().toString();
+        //make full address
+        String fullAddress = "";
+        String creditCardNbr = signUpCardNumber.getText().toString();
+        String creditCardExp = signUpExpirationDate.getText().toString();
+        String creditCardCVV = signUpCVV.getText().toString();
+        //maybe have credit card class to store credit card info?
+        String fullCreditCardInfo = "";
+        String description = signUpUserDescription.getText().toString();
+
 
         //Make sure all fields filled
-        if(email.isEmpty() || password.isEmpty() || username.isEmpty()){
+        if(email.isEmpty() || password.isEmpty() || nom.isEmpty() || nomFamille.isEmpty() || streetAddress.isEmpty() || city.isEmpty() || postalCode.isEmpty()){
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
         }
         else{
-            //Check if an account was already created using inputed username
-            //Username needs to be a unique ID with no special characters
+            //Check if an account was already created using input email
+            //if no email exists in database, add a user
             rootNode.getReference().child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if(snapshot.hasChild("Cuisiniers/"+username)||snapshot.hasChild("Client/"+username)){
+                    if(snapshot.hasChild("Cuisiniers/"+encodedEmailAsString)||snapshot.hasChild("Clients/"+encodedEmailAsString)){
                         Toast.makeText(SignUpActivity.this, "Username already exists", Toast.LENGTH_SHORT).show();
                     }
-                    //username is not used -> create account
+                    //email is not used -> create account
                     else{
                         if(role.equalsIgnoreCase("cuisinier")){
                             reference = rootNode.getReference("Users/Cuisiniers");
                             //create account object and add account to Cusiniers database
-                            Account newAccount = new Cuisinier(email, password, "","", "");
+                            Account newAccount = new Cuisinier(email, password, nom,nomFamille, fullAddress, description);
                             //Creates a nested node in Cuisiniers database with all of the object info
-                            reference.child(username).setValue(newAccount);
+                            reference.child(encodedEmailAsString).setValue(newAccount);
                         }
 
                         else if(role.equalsIgnoreCase("client")){
                             reference = rootNode.getReference("Users/Clients");
                             //create account object and add account to Clients database
-                            Account newAccount = new Client(email, password, "","", "");
+                            Account newAccount = new Client(email, password, nom, nomFamille, fullAddress, fullCreditCardInfo);
                             //Creates a nested node in Clients database with all of the object info
-                            reference.child(username).setValue(newAccount);
+                            reference.child(encodedEmailAsString).setValue(newAccount);
                         }
                         Toast.makeText(SignUpActivity.this, "User registered", Toast.LENGTH_SHORT).show();
                         finish();
@@ -134,10 +152,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    private void addUserToDatabase(String role){
 
 
-    }
     private void SignUpHide(){
         if(role.equalsIgnoreCase("cuisinier")){
             signUpCreditCardInfotext.setVisibility(View.GONE);
@@ -153,3 +169,6 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 }
+
+
+

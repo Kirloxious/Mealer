@@ -12,8 +12,8 @@ public class Cuisinier extends Account {
 	private String status = "travaille";
 
 
-	public Cuisinier(String email, String pwd, String nom, String address, String description) {
-		super(email, pwd, nom, address);
+	public Cuisinier(String email, String pwd, String nom, String nomFamille, String address, String description) {
+		super(email, pwd, nom, nomFamille, address);
 		this.description = description;
 		evaluation = 0;
 		numEvaluation = 0;

@@ -44,10 +44,12 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void sendToHomeScreen(View view) {
-        String username = sign_in_email.getText().toString();
+        String email = sign_in_email.getText().toString();
+        UTF8Encoder encodedEmail = new UTF8Encoder(email);
+        String encodedEmailAsString = encodedEmail.getEncodedString();
         String password = sign_in_password.getText().toString();
 
-        String user_path = "Users/" + transformRoleToDbPath(role) + "/" + username;
+        String user_path = "Users/" + transformRoleToDbPath(role) + "/" + encodedEmailAsString;
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference(user_path);
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -72,21 +74,22 @@ public class SignInActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {}
         });
     }
-    private void showMessage(String message) {
+    public void showMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    private void setSignInTextAccordingToRole() {
-        String text = sign_in_text.getText().toString();
-        sign_in_text.setText(text + " " + role);
-    }
 
-    private String transformRoleToDbPath(String role) {
+    public String transformRoleToDbPath(String role) {
         if(role.equalsIgnoreCase("cuisinier")) return "Cuisiniers";
         if(role.equalsIgnoreCase("client")) return "Clients";
         if(role.equalsIgnoreCase("admin")) return "Admins";
         showMessage("This should never happen");
         return null;
+    }
+
+    private void setSignInTextAccordingToRole() {
+        String text = sign_in_text.getText().toString();
+        sign_in_text.setText(text + " " + role);
     }
 
     private void hideSignUpButtonIfAdmin() {

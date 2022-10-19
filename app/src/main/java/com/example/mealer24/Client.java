@@ -8,8 +8,8 @@ public class Client extends Account {
 	private String creditCardInfo;
 	private LinkedList<DemandeAchat>tousRepas= new LinkedList<DemandeAchat>();
 
-	public Client(String email, String pwd, String nom, String address, String cci) {
-		super(email, pwd, nom, address);
+	public Client(String email, String pwd, String nom, String nomFamille, String address, String cci) {
+		super(email, pwd, nom, nomFamille, address);
 		creditCardInfo = cci;
 	}
 
