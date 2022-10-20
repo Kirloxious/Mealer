@@ -51,7 +51,6 @@ public class SignInActivity extends AppCompatActivity {
 
         String user_path = "Users/" + transformRoleToDbPath(role) + "/" + encodedEmailAsString;
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference(user_path);
-        showMessage(user_path);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
