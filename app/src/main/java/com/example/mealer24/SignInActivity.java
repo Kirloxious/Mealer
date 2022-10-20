@@ -51,7 +51,7 @@ public class SignInActivity extends AppCompatActivity {
 
         String user_path = "Users/" + transformRoleToDbPath(role) + "/" + encodedEmailAsString;
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference(user_path);
-
+        showMessage(user_path);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -62,12 +62,14 @@ public class SignInActivity extends AppCompatActivity {
 
                 Account user_acc = snapshot.getValue(Account.class);
                 if(user_acc.getPwd().equals(password)) {
-                    //send to home page
+                    Intent intent = new Intent(SignInActivity.this, role.equalsIgnoreCase("cuisinier") ?
+                            HomeScreenChef.class : HomeScreenClient.class);
                     showMessage("Login successful");
+                    startActivity(intent);
                     return;
                 }
 
-                showMessage("Username or password does not exist!");
+                showMessage("Username or password does not exist");
             }
 
             @Override
@@ -79,6 +81,7 @@ public class SignInActivity extends AppCompatActivity {
     }
 
 
+    //this is a very ugly hack. We seriously need to change it. It shouldn't be that hard to fix.
     public String transformRoleToDbPath(String role) {
         if(role.equalsIgnoreCase("cuisinier")) return "Cuisiniers";
         if(role.equalsIgnoreCase("client")) return "Clients";
