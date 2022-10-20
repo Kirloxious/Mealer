@@ -5,15 +5,14 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class HomeScreenClient extends AppCompatActivity {
+public class HomeScreenClient extends HomeScreen {
     private Button order_meal;
     private Button best_chefs;
     private Button order_status;
     private Button previous_orders;
-    private Button home;
-    private Button browse;
+
     private Button my_orders;
-    private Button settings;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
