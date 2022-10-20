@@ -12,7 +12,7 @@ public class Admin extends Account {
 	public void accessPlaintes() {
 		//go through all cooks' plainte list.
 	}
-	//add suspend (permanent/temporary) methodes?
+	//add suspend (permanent/temporary) methodes? - cancel all active order from if any
 	//add reject methode?
 
 

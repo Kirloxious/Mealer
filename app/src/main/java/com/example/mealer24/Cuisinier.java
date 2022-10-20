@@ -6,7 +6,7 @@ import java.util.LinkedList;
  * décide quel repas est au menu,conserve une liste de toutes les demandes d'achat jamais reçues,
  * une liste des plaintes,
  */
-
+ // if cuisinier permanently suspended make sure can't login
 public class Cuisinier extends Account {
 	private String description;
 	private LinkedList<Repas> mesRepas = new LinkedList<Repas>();
@@ -95,5 +95,5 @@ public class Cuisinier extends Account {
 		cuisinierPlaintes.add(unePlainte);
 	}
 	
-	
+	// add delete meal methode
 }
