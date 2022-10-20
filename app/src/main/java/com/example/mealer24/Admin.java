@@ -9,11 +9,14 @@ public class Admin extends Account {
 		super("admin@admin.com" , "adminpassword", null, null, null);
 
 	}
-	public void accessPlaintes() {
+	private void accessPlaintes() {
 		//go through all cooks' plainte list.
 	}
-	//add suspend (permanent/temporary) methodes?
-	//add reject methode?
+
+	//called when the admin decides to suspend a cook
+	private void suspendCook(){
+
+	}
 
 
 }

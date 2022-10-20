@@ -4,7 +4,8 @@ import java.util.LinkedList;
 /***
  * Classe Cuisinier
  * décide quel repas est au menu,conserve une liste de toutes les demandes d'achat jamais reçues,
- * une liste des plaintes,
+ * une liste des plaintes,son evaluation, le nombre de repas vendus et son status(si le cuisinier et temporairement suspendu ou travaille-t-il ou suspended)
+ * le cuisinier a aussi une liste de plaintes que les clients ont portés sur lui
  */
 
 public class Cuisinier extends Account {
