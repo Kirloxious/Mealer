@@ -5,23 +5,24 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class HomeScreenChef extends AppCompatActivity {
-    private Button prepare_meal;
+public class HomeScreenAdmin extends AppCompatActivity {
+    private Button complaints;
     private Button best_chefs;
-    private Button order_requests;
-    private Button previous_meals;
+    private Button last_complaints;
+    private Button sus_chefs;
     private Button home;
     private Button browse;
-    private Button my_meals;
     private Button settings;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_homescreen_chef);
+        setContentView(R.layout.activity_homescreen_admin);
 
+        complaints = findViewById(R.id.Complaints);
+        last_complaints = findViewById(R.id.LastComplaints);
         best_chefs = findViewById(R.id.BestChefs);
-        order_requests = findViewById(R.id.OrderRequests);
-        previous_meals = findViewById(R.id.PrevMeals);
-        prepare_meal = findViewById(R.id.Meal);
+        sus_chefs = findViewById(R.id.SusChefs);
     }
+
+
 }
