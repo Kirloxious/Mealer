@@ -1,9 +1,11 @@
 package com.example.mealer24;
 import java.util.LinkedList;
+
+/**
+ * Classe Client
+ * Le client a une liste des demandes d'achat qu'il a fait (present ou pas)
+ */
 public class Client extends Account {
-
-
-
 
 	private String creditCardInfo;
 	private LinkedList<DemandeAchat>tousRepas= new LinkedList<DemandeAchat>();
@@ -16,9 +18,7 @@ public class Client extends Account {
 	public LinkedList<DemandeAchat> getTousRepas() {
 		return tousRepas;
 	}
-	public void addAncienRepas(DemandeAchat repasOrdered) {
-		tousRepas.add(repasOrdered);
-	}
+
 	public String getCreditCardInfo() {
 		return creditCardInfo;
 	}
@@ -27,8 +27,7 @@ public class Client extends Account {
 	}
 	public void madeAPurchase(DemandeAchat purchase) {
 		tousRepas.add(purchase);
-		//Demande d'achat sent from activity.
 	}
-	//Should I add a getStatusAchat function to return the status of all current orders?
+
 	
 }
