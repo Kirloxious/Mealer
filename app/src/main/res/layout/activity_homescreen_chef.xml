@@ -22,7 +22,8 @@
             android:id="@+id/Meal"
             android:layout_width="match_parent"
             android:layout_height="90dp"
-            android:text="Prepare a meal" />
+            android:text="Prepare a meal"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/BestChefs"

@@ -1,5 +1,11 @@
 package com.example.mealer24;
 
+/**
+ * Classe Repas
+ * Gardes les informations d'un repas(ingredients, allergies, prix, description, type de cuisines, type de repas, descriptions, nom du repas)
+ * Gardes aussi le couriel du cuisinier qui prepare le repas et un status de presence si le cuisinier decide de mettre le repas sur le menu ou non.
+ *
+ */
 public class Repas {
 	private String nomDuRepas;
 	private String cuisinierEmail;
@@ -11,7 +17,7 @@ public class Repas {
 	private float prix;
 	private String description;
 	
-
+	//Constructor
 	public Repas(String description,String nomDuRepas,String cuisinierEmail, Boolean status, String typeDeRepas, String typeDeCuisine, String ingredients, String allergies, float prix) {
 		this.nomDuRepas = nomDuRepas;
 		this.cuisinierEmail = cuisinierEmail;
@@ -23,6 +29,8 @@ public class Repas {
 		this.prix =prix;
 		this.description =description;
 	}
+
+	//Les fonctions dans les 16 prochaine linges sont pour obtenir et changer les variables
 	public String getNomDuRepas() {
 		return nomDuRepas;
 	}
@@ -31,11 +39,6 @@ public class Repas {
 	}
 	public String getCuisinierEmail() {
 		return cuisinierEmail;
-	}
-	public void setCuisinierEmail() {
-		//send to sign up
-		//or
-		//make sure the email isnt already exisiting before switching it
 	}
 	public Boolean getStatus() {
 		return statusPresense;
@@ -73,13 +76,15 @@ public class Repas {
 	public float getPrix() {
 		return prix;
 	}
-	
-	public void flipStatus() {
-		statusPresense = !statusPresense;
-	}
 	public void setPrix(float prix) {
 		this.prix = prix;
 	}
-	
+
+	//cette fonction sert à inverser le statut de présence du repas sur le menu
+	public void flipStatus() {
+		statusPresense = !statusPresense;
+	}
+
+
 	
 }

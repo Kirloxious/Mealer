@@ -5,15 +5,13 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class HomeScreenChef extends AppCompatActivity {
+public class HomeScreenChef extends HomeScreen {
     private Button prepare_meal;
     private Button best_chefs;
     private Button order_requests;
     private Button previous_meals;
-    private Button home;
-    private Button browse;
+
     private Button my_meals;
-    private Button settings;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
