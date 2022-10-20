@@ -31,9 +31,13 @@ public class MainActivity extends AppCompatActivity {
         sign_in_as_client = findViewById(R.id.SignInAsClient);
         sign_in_as_admin = findViewById(R.id.SignInAsAdmin);
 
+
+
         sign_in_as_client.setOnClickListener(this::SendToSignInPage);
         sign_in_as_admin.setOnClickListener(this::SendToSignInPage);
         sign_in_as_cuisinier.setOnClickListener(this::SendToSignInPage);
+
+//        createAdminLogin();
 
     }
 
@@ -46,5 +50,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void createAdminLogin(){
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users/Admin");
+        Account admin = new Admin();
+        UTF8Encoder encodedEmail = new UTF8Encoder(admin.getEmail());
+        String encodedEmailAsString = encodedEmail.getEncodedString();
+        ref.child(encodedEmailAsString).setValue(admin);
+
+    }
 
 }

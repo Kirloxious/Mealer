@@ -1,11 +1,16 @@
 package com.example.mealer24;
 
-public class Admin {
-	
+public class Admin extends Account {
+
 	public Admin() {
-		
+		super("admin@admin.com" , "adminpassword", null, null, null);
+
 	}
 	public void accessPlaintes() {
 		//go through all cooks' plainte list.
 	}
+
+
+
+
 }
