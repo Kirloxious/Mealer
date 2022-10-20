@@ -9,8 +9,8 @@ public class Admin extends Account {
 	public void accessPlaintes() {
 		//go through all cooks' plainte list.
 	}
-
-
+	//add suspend (permanent/temporary) methodes?
+	//add reject methode?
 
 
 }
