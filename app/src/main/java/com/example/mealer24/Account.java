@@ -10,7 +10,7 @@ public class Account {
 	private String nom;
 	private String nomFamille;
 	private String address;
-	private Boolean logInStatus;
+	private boolean logInStatus;
 
 	//Constructor
 	public Account(){};
@@ -35,14 +35,11 @@ public class Account {
 		return pwd;
 	}
 	//Check if passwords match when creating account
-	public Boolean setPwd(String newPwd) {
-		//check if password matches password on account. if yes return true.use this.
-		return false;
+	public void setPwd(String newPwd) {
+		pwd = newPwd;
 	}
 
-	public String getNom() {
-		return nom;
-	}
+	public String getNom() { return nom; }
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
@@ -58,11 +55,7 @@ public class Account {
 	public void setAddress(String address) {
 		this.address= address;
 	}
-	public boolean logIn(String email, String pwd) {
-		//IN ACTIVITY
-		//check with firebase to see if person exist and if so check if the password matches
-		//if not then redirect or suggest to create a new account
-		//change login status if login successful
+	public boolean getLogInStatus() {
 		return logInStatus;
 	}
 	public void logOut() {
