@@ -50,6 +50,7 @@
                 android:id="@+id/SignUpFirstName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:ems="10"
                 android:hint="Name"
                 android:inputType="textPersonName"
@@ -59,6 +60,7 @@
                 android:id="@+id/SignUpLastName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:ems="10"
                 android:hint="Last Name"
                 android:inputType="textPersonName"
@@ -90,6 +92,7 @@
                 android:id="@+id/SignUpCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'-."
                 android:ems="10"
                 android:hint="City"
                 android:inputType="textPersonName"
@@ -102,7 +105,9 @@
                 android:ems="10"
                 android:hint="Postal / Zip Code"
                 android:inputType="textPersonName"
-                android:minHeight="48dp" />
+                android:maxLength="7"
+                android:minHeight="48dp"
+                android:textAllCaps="true" />
 
         </LinearLayout>
 
@@ -125,7 +130,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Card Number"
-            android:inputType="textPersonName"
+            android:inputType="number"
+            android:maxLength="19"
             android:minHeight="48dp" />
 
         <LinearLayout
@@ -140,17 +146,19 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Expiration Date (MM/YY)"
-                android:inputType="textPersonName"
+                android:inputType="date"
+                android:maxLength="5"
                 android:minHeight="48dp" />
 
             <EditText
                 android:id="@+id/SignUpCVV"
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="CVV"
-                android:inputType="textPersonName"
+                android:inputType="number"
+                android:maxLength="3"
                 android:minHeight="48dp" />
         </LinearLayout>
 
