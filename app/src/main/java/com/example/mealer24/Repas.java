@@ -7,9 +7,11 @@ package com.example.mealer24;
  *
  */
 public class Repas {
+
+	//Repas class variables
 	private String nomDuRepas;
 	private String cuisinierEmail;
-	private Boolean statusPresense;
+	private boolean statusPresense;
 	private String typeDeRepas;
 	private String typeDeCuisine;
 	private String ingredients;
@@ -17,7 +19,7 @@ public class Repas {
 	private float prix;
 	private String description;
 	
-	//Constructor
+	//initialization methode for Repas
 	public Repas(String description,String nomDuRepas,String cuisinierEmail, Boolean status, String typeDeRepas, String typeDeCuisine, String ingredients, String allergies, float prix) {
 		this.nomDuRepas = nomDuRepas;
 		this.cuisinierEmail = cuisinierEmail;
@@ -30,55 +32,39 @@ public class Repas {
 		this.description =description;
 	}
 
-	//Les fonctions dans les 16 prochaine linges sont pour obtenir et changer les variables
-	public String getNomDuRepas() {
-		return nomDuRepas;
-	}
-	public void setNomDuRepas(String nomRepas) {
-		nomDuRepas = nomRepas;
-	}
-	public String getCuisinierEmail() {
-		return cuisinierEmail;
-	}
-	public Boolean getStatus() {
-		return statusPresense;
-	}
-	public String getTypeDeRepas() {
-		return typeDeRepas;
-	}
-	public void setTypeDeRepas(String typeDeRepas) {
-		this.typeDeRepas = typeDeRepas;
-	}
-	public String getTypeDeCuisine() {
-		return typeDeCuisine;
-	}
-	public void setTypeDeCuisine(String typeDeCuisine) {
-		this.typeDeCuisine = typeDeCuisine;
-	}
-	public String getIngredients() {
-		return ingredients;
-	}
-	public void setIngredients(String ingredients) {
-		this.ingredients= ingredients;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription (String descri) {
-		description= descri;
-	}
-	public String getAllergies() {
-		return allergies;
-	}
-	public void setAllergies(String allergies) {
-		this.allergies= allergies;
-	}
-	public float getPrix() {
-		return prix;
-	}
-	public void setPrix(float prix) {
-		this.prix = prix;
-	}
+	//get and set the name of a meal
+	public String getNomDuRepas() {return nomDuRepas;}
+	public void setNomDuRepas(String nomRepas) {nomDuRepas = nomRepas;}
+
+	//get email of a Cuisinier
+	public String getCuisinierEmail() {return cuisinierEmail;}
+
+	//get the status of a meal (available for order or not)
+	public boolean getStatus() {return statusPresense;}
+
+	//get and set the type of meal
+	public String getTypeDeRepas() {return typeDeRepas;}
+	public void setTypeDeRepas(String typeDeRepas) {this.typeDeRepas = typeDeRepas;}
+
+	//get and set the type of cuisine of a meal
+	public String getTypeDeCuisine() {return typeDeCuisine;}
+	public void setTypeDeCuisine(String typeDeCuisine) {this.typeDeCuisine = typeDeCuisine;}
+
+	//get and set the ingredients of a meal
+	public String getIngredients() {return ingredients;}
+	public void setIngredients(String ingredients) {this.ingredients= ingredients;}
+
+	//get and set the description of a meal
+	public String getDescription() {return description;}
+	public void setDescription (String descri) {description= descri;}
+
+	//get and set the allergens of a meal
+	public String getAllergies() {return allergies;}
+	public void setAllergies(String allergies) {this.allergies= allergies;}
+
+	//get and set the price of a meal
+	public float getPrix() {return prix;}
+	public void setPrix(float prix) {this.prix = prix;}
 
 	//cette fonction sert à inverser le statut de présence du repas sur le menu
 	public void flipStatus() {

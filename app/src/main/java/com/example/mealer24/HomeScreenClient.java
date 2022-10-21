@@ -5,6 +5,13 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * This is the home screen for a client account where
+ * they can see the best chef depending on their ratings,
+ * their previous orders, the order status of their active (no status by chef) orders
+ * and where they can order and search for meals
+ * */
+
 public class HomeScreenClient extends HomeScreen {
     private Button order_meal;
     private Button best_chefs;

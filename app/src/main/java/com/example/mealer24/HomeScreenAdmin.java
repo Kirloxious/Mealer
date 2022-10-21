@@ -5,6 +5,10 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * This is the home screen for an admin account where
+ * they can see the complaints and best/sus chef depending on their ratings
+ * */
 public class HomeScreenAdmin extends HomeScreen {
     private Button complaints;
     private Button best_chefs;

@@ -9,13 +9,15 @@ import java.util.Date;
  * l'heure ou l'achat est demandé et quel repas commander dans cette achat
   */
 public class DemandeAchat {
+
+	//DemandeAchat class variable
 	private String statusAchat;
 	private Client clientQuiAchete;
 	private Cuisinier cuisinierQuiVend;
 	private Date pickUpTime;
 	private Repas repasCommander;
 
-	//Constructor
+	//initialization methode for DemandeAchat
 	public DemandeAchat(String statusAchat,Cuisinier cuisinierQuiVend, Client clientQuiAchete, Date pickUpTime, Repas repasCommander) {
 		this.statusAchat = statusAchat;
 		this.clientQuiAchete= clientQuiAchete;
@@ -24,28 +26,34 @@ public class DemandeAchat {
 		this.repasCommander= repasCommander;
 	}
 
-	//pour changer les status d'achat de repas entre: pending, completed, refused
-
-	public void changeBuyingStatus(String status) {
+	//pour changer et get le status d'achat de repas entre: pending, completed, refused
+	public void changeStatusDeCommande(String status) {
 		statusAchat = status;
 	}
 	public String getStatusDeCommande() {
 		return statusAchat;
 	}
+
+	//create a Plainte in the list of Plaintes of the cook (by client)
 	public void addPlainte(Plaintes unePlainte) {
 		cuisinierQuiVend.addCuisinierPlaintes(unePlainte);
 	}
+
+	//adds an evaluation to a cook
 	public void addEvaluation(int evaluationDonner) {
 		cuisinierQuiVend.updateEvaluation(evaluationDonner);
 	}
-	
-	public void setPickUpDate(Date pickUpTime) {
+
+	//set and get a time and date for pick-up of an order
+	public void setPickUpTime(Date pickUpTime) {
 		this.pickUpTime = pickUpTime;
 	}
 	public Date getPickUpTime() {
 		return pickUpTime;
 	}
-	public Repas getRepas() {
+
+	//set and get the ordered meal
+	public Repas getRepasCommander() {
 		return repasCommander;
 	}
 	public void setRepasCommander(Repas repasCommander) {
