@@ -1,4 +1,5 @@
 package com.example.mealer24;
+import android.media.Image;
 import java.util.LinkedList;
 
 /***
@@ -21,11 +22,13 @@ public class Cuisinier extends Account {
 	private LinkedList<Plaintes> cuisinierPlaintes = new LinkedList<Plaintes>();
 	private int nombreRepasVendu;
 	private String status = "travaille";
+	private Image voidCheque;
 
 	//initialization methode for Cuisinier
-	public Cuisinier(String email, String pwd, String nom, String nomFamille, String address, String description) {
+	public Cuisinier(String email, String pwd, String nom, String nomFamille, String address, String description, Image voidCheque) {
 		super(email, pwd, nom, nomFamille, address);
 		this.description = description;
+		this.voidCheque = voidCheque;
 		evaluation = 0;
 		numEvaluation = 0;
 		nombreRepasVendu = 0;
