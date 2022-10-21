@@ -37,6 +37,15 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".HomeScreenAdmin"
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
             android:name=".SignInActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity">

@@ -61,8 +61,15 @@ public class SignInActivity extends AppCompatActivity {
 
                 Account user_acc = snapshot.getValue(Account.class);
                 if(user_acc.getPwd().equals(password)) {
-                    Intent intent = new Intent(SignInActivity.this, role.equalsIgnoreCase("cuisinier") ?
-                            HomeScreenChef.class : HomeScreenClient.class);
+                    Intent intent;
+                    if(role.equalsIgnoreCase("cusinier")) {
+                        intent = new Intent(SignInActivity.this, HomeScreenChef.class);
+                    }else if(role.equalsIgnoreCase("client")) {
+                        intent = new Intent(SignInActivity.this, HomeScreenClient.class);
+                    }else if(role.equalsIgnoreCase("admin")) {
+                        intent = new Intent(SignInActivity.this, HomeScreenAdmin.class);
+                    }else throw new RuntimeException();
+
                     showMessage("Login successful");
                     startActivity(intent);
                     return;
@@ -84,7 +91,7 @@ public class SignInActivity extends AppCompatActivity {
     public String transformRoleToDbPath(String role) {
         if(role.equalsIgnoreCase("cuisinier")) return "Cuisiniers";
         if(role.equalsIgnoreCase("client")) return "Clients";
-        if(role.equalsIgnoreCase("admin")) return "Admins";
+        if(role.equalsIgnoreCase("admin")) return "Admin";
         showMessage("This should never happen");
         return null;
     }

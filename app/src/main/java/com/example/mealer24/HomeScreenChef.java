@@ -18,6 +18,7 @@ public class HomeScreenChef extends HomeScreen {
 
     private Button my_meals;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen_chef);
@@ -27,6 +28,7 @@ public class HomeScreenChef extends HomeScreen {
         previous_meals = findViewById(R.id.PrevMeals);
         prepare_meal = findViewById(R.id.Meal);
 
+        logoutBtn = findViewById(R.id.logoutBtn);
         logoutBtn.setOnClickListener(view -> logoutUser());
 
     }

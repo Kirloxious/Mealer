@@ -15,7 +15,7 @@ public class HomeScreenAdmin extends HomeScreen {
     private Button last_complaints;
     private Button sus_chefs;
 
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen_admin);
@@ -25,6 +25,7 @@ public class HomeScreenAdmin extends HomeScreen {
         best_chefs = findViewById(R.id.BestChefs);
         sus_chefs = findViewById(R.id.SusChefs);
 
+        logoutBtn = findViewById(R.id.logoutBtn);
         logoutBtn.setOnClickListener(view -> logoutUser());
 
     }

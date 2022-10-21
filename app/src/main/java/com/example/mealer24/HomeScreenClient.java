@@ -20,7 +20,7 @@ public class HomeScreenClient extends HomeScreen {
 
     private Button my_orders;
 
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen_client);
@@ -29,8 +29,8 @@ public class HomeScreenClient extends HomeScreen {
         order_status = findViewById(R.id.OrderRequests);
         previous_orders = findViewById(R.id.PrevMeals);
         order_meal = findViewById(R.id.OrderMeal);
-        logoutBtn = findViewById(R.id.logoutBtn);
 
+        logoutBtn = findViewById(R.id.logoutBtn);
         logoutBtn.setOnClickListener(view -> logoutUser());
 
     }
