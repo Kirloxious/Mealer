@@ -7,8 +7,12 @@ import java.util.LinkedList;
  * une liste des plaintes,son evaluation, le nombre de repas vendus et son status(si le cuisinier et temporairement suspendu ou travaille-t-il ou suspended)
  * le cuisinier a aussi une liste de plaintes que les clients ont portés sur lui
  */
- // if cuisinier permanently suspended make sure can't login
+
+ // if cuisinier permanently suspended, make sure can't login
+
 public class Cuisinier extends Account {
+
+	//Cuisinier class variables
 	private String description;
 	private LinkedList<Repas> mesRepas = new LinkedList<Repas>();
 	private LinkedList<DemandeAchat> toutAchat = new LinkedList<DemandeAchat>();
@@ -18,7 +22,7 @@ public class Cuisinier extends Account {
 	private int nombreRepasVendu;
 	private String status = "travaille";
 
-  //make sure when suspended permanently can't login
+	//initialization methode for Cuisinier
 	public Cuisinier(String email, String pwd, String nom, String nomFamille, String address, String description) {
 		super(email, pwd, nom, nomFamille, address);
 		this.description = description;
@@ -27,19 +31,33 @@ public class Cuisinier extends Account {
 		nombreRepasVendu = 0;
 		status = "travaille";
 	}
+
+	//get and set for Cuisinier's description
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	//get and add to list of all the meals for a Cuisinier
+	public LinkedList<Repas> getListOfAllRepas() {
+		return mesRepas;
+	}
 	public void addToListOfRepas(Repas nouveauRepas) {
 		//Repas obtained from activity page.
 		mesRepas.add(nouveauRepas);
 	}
-	public LinkedList<Repas> getListOfAllRepas() {
-		return mesRepas;
+
+	//get and update the total number of sold meals
+	public void updateNombreRepasVendu() {
+		nombreRepasVendu ++;
 	}
+	public int getNombreRepasVendu() {
+		return nombreRepasVendu;
+	}
+
+
 	public LinkedList<Repas> getTodaysMenuOnly(){
 		LinkedList<Repas> todayMenu = new LinkedList<Repas>();
 		for (int i =0; i<mesRepas.size();i++) {
@@ -49,31 +67,28 @@ public class Cuisinier extends Account {
 		}
 		return todayMenu;
 	}
+
+	// get and update note d'évaluation from and for Client
 	public void updateEvaluation(int sentEvaluation) {
 		numEvaluation ++;
 		evaluation = (evaluation+sentEvaluation)/numEvaluation;
 		
 	}
-	
 	public float getEvaluation() {
 		return evaluation;
 	}
-	public void updateNombreRepasVendu() {
-		nombreRepasVendu ++;
-	}
-	public int getNombreRepasVendu() {
-		return nombreRepasVendu;
-	}
+
 
 	
-	//update status travail, only admin should access
+	//get and update status travail, only admin will use this methode
 	public void updateStatusOfCook(String statusOfCook) {
 		status = statusOfCook;
 	}
 	public String getStatusOfCook() {
 		return status;
 	}
-	
+
+	//get and add to the liste de demande for each Cuisinier
 	public void updateListeDeDemande(DemandeAchat uneDemande) {
 		toutAchat.add(uneDemande);
 	
@@ -83,18 +98,17 @@ public class Cuisinier extends Account {
 		//make it so that it returns only one
 		
 	}
-	public void handleDemande(DemandeAchat uneDemande) {
-		//code fpr handling demande
-		updateListeDeDemande( uneDemande);
-		
-	}
-	
+
+	//get(for admin) and add(by Client) plaintes to a Cuisinier
 	public LinkedList<Plaintes> getCuisinierPlaintes(){
 		return cuisinierPlaintes;
 	}
 	public void addCuisinierPlaintes(Plaintes unePlainte) {
 		cuisinierPlaintes.add(unePlainte);
 	}
-	
-	// add delete meal methode
+
+	//deletes the specified meal in the list of repas (mesRepas)
+	public void deleteRepas (Repas meal){
+		//to implement
+	}
 }

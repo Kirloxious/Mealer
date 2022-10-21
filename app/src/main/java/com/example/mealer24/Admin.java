@@ -12,16 +12,16 @@ public class Admin extends Account {
 	private void accessPlaintes() {
 		//go through all cooks' plainte list.
 	}
-<<<<<<< HEAD
-	//add suspend (permanent/temporary) methodes? - cancel all active order from if any
+//<<<<<<< HEAD
+	//add suspend (permanent/temporary) methodes? - cancel all active order from cook if any
 	//add reject methode?
-=======
+//=======
 
 	//called when the admin decides to suspend a cook
 	private void suspendCook(){
 
 	}
->>>>>>> e57f8225c6ad9f1bbdd5088da31d32a5708e08ef
+//>>>>>>> e57f8225c6ad9f1bbdd5088da31d32a5708e08ef
 
 
 }
