@@ -26,5 +26,8 @@ public class HomeScreenChef extends HomeScreen {
         order_requests = findViewById(R.id.OrderRequests);
         previous_meals = findViewById(R.id.PrevMeals);
         prepare_meal = findViewById(R.id.Meal);
+
+        logoutBtn.setOnClickListener(view -> logoutUser());
+
     }
 }

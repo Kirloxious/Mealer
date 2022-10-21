@@ -8,11 +8,12 @@ import java.util.LinkedList;
 public class Client extends Account {
 
 	// Client's class variables
-	private String creditCardInfo;
+	private CreditCard creditCardInfo;
 	private LinkedList<DemandeAchat>tousRepas= new LinkedList<DemandeAchat>();
 
+
 	//initialization methode for Client
-	public Client(String email, String pwd, String nom, String nomFamille, String address, String cci) {
+	public Client(String email, String pwd, String nom, String nomFamille, String address, CreditCard cci) {
 		super(email, pwd, nom, nomFamille, address);
 		creditCardInfo = cci;
 	}
@@ -23,10 +24,11 @@ public class Client extends Account {
 	}
 
 	//get and set credit card info
-	public String getCreditCardInfo() {
+	//uses getters and setters from CreditCard class
+	public CreditCard getCreditCardInfo() {
 		return creditCardInfo;
 	}
-	public void setCreditCardInfo(String newCCI) {
+	public void setCreditCardInfo(CreditCard newCCI) {
 		creditCardInfo = newCCI;
 	}
 

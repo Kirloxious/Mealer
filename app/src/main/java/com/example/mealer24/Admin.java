@@ -32,17 +32,7 @@ public class Admin extends Account {
 		//to implement
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-	=======
-	>>>>>>> 6e79e7aff71278929b35e5cfcab91ab7e3d16113
-=======
 
 	}
-<<<<<<< HEAD
->>>>>>> e57f8225c6ad9f1bbdd5088da31d32a5708e08ef
-=======/>>>>>>>
-
->>>>>>> 6e79e7aff71278929b35e5cfcab91ab7e3d16113
 
 

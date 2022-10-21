@@ -111,12 +111,12 @@ public class SignUpActivity extends AppCompatActivity {
         String city = signUpCity.getText().toString();
         String postalCode = signUpPostal.getText().toString();
         //make full address
-        String fullAddress = "";
+        String fullAddress = streetAddress + " " + city + ", " + postalCode;
         String creditCardNbr = signUpCardNumber.getText().toString();
         String creditCardExp = signUpExpirationDate.getText().toString();
         String creditCardCVV = signUpCVV.getText().toString();
         //maybe have credit card class to store credit card info?
-        String fullCreditCardInfo = "";
+        CreditCard fullCreditCardInfo = new CreditCard(creditCardNbr, creditCardExp, creditCardCVV);
         String description = signUpUserDescription.getText().toString();
 
 
@@ -137,7 +137,7 @@ public class SignUpActivity extends AppCompatActivity {
                         if (role.equalsIgnoreCase("cuisinier")) {
                             reference = rootNode.getReference("Users/Cuisiniers");
                             //create account object and add account to Cusiniers database
-                            Account newAccount = new Cuisinier(email, password, nom, nomFamille, fullAddress, description);
+                            Account newAccount = new Cuisinier(email, password, nom, nomFamille, fullAddress, description, null);
                             //Creates a nested node in Cuisiniers database with all of the object info
                             reference.child(encodedEmailAsString).setValue(newAccount);
                         } else if (role.equalsIgnoreCase("client")) {

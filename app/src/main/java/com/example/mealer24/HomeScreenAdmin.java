@@ -24,6 +24,9 @@ public class HomeScreenAdmin extends HomeScreen {
         last_complaints = findViewById(R.id.LastComplaints);
         best_chefs = findViewById(R.id.BestChefs);
         sus_chefs = findViewById(R.id.SusChefs);
+
+        logoutBtn.setOnClickListener(view -> logoutUser());
+
     }
 
 
