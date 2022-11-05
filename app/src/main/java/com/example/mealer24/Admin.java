@@ -30,24 +30,25 @@ public class Admin extends Account {
 	private void suspendTemp(Cuisinier unChef, Time unTemps){
 		//take in choice of length of suspension and apply it
 		unChef.updateStatusOfCook("Suspended");
-		blockCusinierFunctions();
-		//while timer<time set by admin: loop? set a timer
+		blockCusinierFunctions(unChef);
+		long startTime = System.currentTimeMillis();
+		while (System.currentTimeMillis()-startTime <unTemps){
+
+		}
 		unChef.updateStatusOfCook("traville");
 		unBlockCuisinier(unChef);
 		deletePlainte();
 	}
 	private void suspendIndef(Cuisinier unChef){
 		unChef.updateStatusOfCook("Banned");
-		blockCusinierFunctions();
+		blockCusinierFunctions(unChef);
 		deletePlainte();
 	}
-	private void blockCusinierFunctions(){
-		//satus
-		//log out the chef, they cannot log back in while their cook status is not banned
-		//could put  a massive ifin cuisinier, do whatevrer you want to do.
+	private void blockCusinierFunctions(Cuisinier unChef){
+		unChef.logOut();
 	}
 	public void unBlockCuisinier(Cuisinier unChef){
-		//functions to unblock the tasks it could do>
+		unChef.updateStatusOfCook("travaille");
 	}
 
 	//reject plainte
