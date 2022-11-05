@@ -35,6 +35,7 @@ public class Cuisinier extends Account {
 		status = "travaille";
 	}
 
+
 	//get and set for Cuisinier's description
 	public String getDescription() {
 		return description;

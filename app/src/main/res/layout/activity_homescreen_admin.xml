@@ -51,33 +51,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView">
 
-        <Button
-            android:id="@+id/Complaints"
+        <TextView
+            android:id="@+id/listOfComplaints"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:text="Customer Complaints"
-            android:textSize="16sp" />
+            android:layout_height="wrap_content"
+            android:text="Les Complaintes" />
 
-        <Button
-            android:id="@+id/BestChefs"
+        <ListView
+            android:id="@+id/complains_list_view"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:text="Best Chefs this month"
-            android:textSize="16sp" />
+            android:layout_height="match_parent" />
 
-        <Button
-            android:id="@+id/LastComplaints"
-            android:layout_width="match_parent"
-            android:layout_height="96dp"
-            android:text="Last complaints"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/SusChefs"
-            android:layout_width="match_parent"
-            android:layout_height="89dp"
-            android:text="View suspended Chefs"
-            android:textSize="16sp" />
     </LinearLayout>
 
     <SearchView
