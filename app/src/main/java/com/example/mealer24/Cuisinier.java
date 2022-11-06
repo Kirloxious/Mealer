@@ -28,6 +28,7 @@ public class Cuisinier extends Account {
 	private LinkedList<Plaintes> cuisinierPlaintes = new LinkedList<Plaintes>();
 	private int nombreRepasVendu;
 	private boolean isBanned = false;
+	private String statusOfCook = "travaille";
 	private Image voidCheque;
 
 	//Empty constructor
@@ -42,6 +43,8 @@ public class Cuisinier extends Account {
 		numEvaluation = 0;
 		nombreRepasVendu = 0;
 	}
+
+	public String getStatusOfCook() { return statusOfCook; }
 
 
 	//get and set for Cuisinier's description
