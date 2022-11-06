@@ -31,10 +31,10 @@ public class Admin extends Account {
 		//take in choice of length of suspension and apply it
 		unChef.updateStatusOfCook("Suspended");
 		blockCusinierFunctions(unChef);
-		long startTime = System.currentTimeMillis();
-		while (System.currentTimeMillis()-startTime <unTemps){
-
-		}
+//		long startTime = System.currentTimeMillis();
+//		while (System.currentTimeMillis()-startTime <unTemps){
+//
+//		}
 		unChef.updateStatusOfCook("traville");
 		unBlockCuisinier(unChef);
 		deletePlainte();

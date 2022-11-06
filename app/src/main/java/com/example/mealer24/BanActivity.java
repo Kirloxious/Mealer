@@ -1,0 +1,36 @@
+package com.example.mealer24;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+public class BanActivity extends AppCompatActivity {
+    private EditText cuisinier_id;
+    private EditText complaint_id;
+    private Button ban_and_dismiss;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ban);
+
+        cuisinier_id = findViewById(R.id.cuisinierId);
+        complaint_id = findViewById(R.id.complaintId);
+        ban_and_dismiss = findViewById(R.id.banAndDismiss);
+
+        ban_and_dismiss.setOnClickListener(this::banAndDismiss);
+    }
+
+    private void banAndDismiss(View view) {
+        String cuisinier_username = cuisinier_id.getText().toString();
+        String complaint_number = complaint_id.getText().toString();
+
+        if(!cuisinier_username.isEmpty()) {
+            // ban cuisinier
+        }
+
+        // dismiss complaint number
+    }
+}

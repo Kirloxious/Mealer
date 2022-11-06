@@ -1,7 +1,9 @@
 package com.example.mealer24;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -28,6 +30,8 @@ public class HomeScreenAdmin extends HomeScreen {
     private Button best_chefs;
     private Button last_complaints;
     private Button sus_chefs;
+    private Button ban_cuisiniers;
+    private Button dismiss_complaint;
     private ListView listOfComplainsView;
 
     //Array
@@ -42,6 +46,11 @@ public class HomeScreenAdmin extends HomeScreen {
         //last_complaints = findViewById(R.id.LastComplaints);
         //best_chefs = findViewById(R.id.BestChefs);
         //sus_chefs = findViewById(R.id.SusChefs);
+        ban_cuisiniers = findViewById(R.id.banCuisinier);
+        dismiss_complaint = findViewById(R.id.dismissComplaint);
+
+        ban_cuisiniers.setOnClickListener(this::sendToBanPage);
+        dismiss_complaint.setOnClickListener(this::sendToBanPage);
 
         listOfComplainsView = findViewById(R.id.complains_list_view);
 
@@ -70,6 +79,10 @@ public class HomeScreenAdmin extends HomeScreen {
         });
 
 
+    }
+    private void sendToBanPage(View view) {
+        Intent intent = new Intent(this, BanActivity.class);
+        startActivity(intent);
     }
 
 
