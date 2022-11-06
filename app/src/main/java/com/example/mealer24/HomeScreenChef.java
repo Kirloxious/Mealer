@@ -18,10 +18,15 @@ public class HomeScreenChef extends HomeScreen {
 
     private Button my_meals;
 
+    boolean isBanned;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen_chef);
+
+        isBanned = getIntent().getBooleanExtra("isBanned", false);
 
         best_chefs = findViewById(R.id.BestChefs);
         order_requests = findViewById(R.id.OrderRequests);
@@ -32,4 +37,15 @@ public class HomeScreenChef extends HomeScreen {
         logoutBtn.setOnClickListener(view -> logoutUser());
 
     }
+    //cusinier is banned,
+    private void showMessageIfBanned(){
+
+        if(isBanned){
+
+            //hide buttons and show banned message
+        }
+
+    }
+
+
 }

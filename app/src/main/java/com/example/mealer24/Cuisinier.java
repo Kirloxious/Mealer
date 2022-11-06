@@ -1,6 +1,12 @@
 package com.example.mealer24;
 import android.media.Image;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 /***
  * Classe Cuisinier
@@ -21,8 +27,11 @@ public class Cuisinier extends Account {
 	private int numEvaluation;
 	private LinkedList<Plaintes> cuisinierPlaintes = new LinkedList<Plaintes>();
 	private int nombreRepasVendu;
-	private String status = "travaille";
+	private boolean isBanned = false;
 	private Image voidCheque;
+
+	//Empty constructor
+	public Cuisinier(){}
 
 	//initialization methode for Cuisinier
 	public Cuisinier(String email, String pwd, String nom, String nomFamille, String address, String description, Image voidCheque) {
@@ -32,7 +41,6 @@ public class Cuisinier extends Account {
 		evaluation = 0;
 		numEvaluation = 0;
 		nombreRepasVendu = 0;
-		status = "travaille";
 	}
 
 
@@ -84,12 +92,24 @@ public class Cuisinier extends Account {
 
 
 	
-	//get and update status travail, only admin will use this methode
-	public void updateStatusOfCook(String statusOfCook) {
-		status = statusOfCook;
+	//This updates the isBanned value in the database to true
+	public void banCuisinier() {
+		DatabaseReference db = Account.getAccountDatabaseReference("Cuisiniers", this.getEmail());
+		this.isBanned = true;
+		Map<String, Object> cusinierValues = this.toMapCuisinier();
+		db.updateChildren(cusinierValues);
 	}
-	public String getStatusOfCook() {
-		return status;
+
+	//This updates the isBanned value in the database to false
+	public void unBanCusinier(){
+		DatabaseReference db = Account.getAccountDatabaseReference("Cuisiniers", this.getEmail());
+		this.isBanned = false;
+		Map<String, Object> cusinierValues = this.toMapCuisinier();
+		db.updateChildren(cusinierValues);
+	}
+
+	public boolean isBanned() {
+		return isBanned;
 	}
 
 	//get and add to the liste de demande for each Cuisinier
@@ -115,4 +135,15 @@ public class Cuisinier extends Account {
 	public void deleteRepas (Repas meal){
 		//to implement
 	}
+
+	@Exclude
+	public Map<String, Object> toMapCuisinier() {
+		Map<String, Object> result = this.toMap();
+		result.put("isBanned", isBanned);
+		result.put("description", description);
+
+
+		return result;
+	}
+
 }

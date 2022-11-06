@@ -13,8 +13,8 @@ public class Admin extends Account {
 	//initialization methode for Admin
 	public Admin() {
 		super("admin@admin.com" , "adminpassword", null, null, null);
-
 	}
+
 
 	/*for Admin to access all plaintes of a certain cook with the help
 	of the getCuisinierPlaintes() methode in the Cuisinier class*/
@@ -27,32 +27,35 @@ public class Admin extends Account {
 	}
 
 	//methode to change the status of a Cuisinier to either permanent or temporary suspension
-	private void suspendTemp(Cuisinier unChef, Time unTemps){
+	public static void suspendTemp(Cuisinier unChef, Time unTemps){
 		//take in choice of length of suspension and apply it
-		unChef.updateStatusOfCook("Suspended");
+
 		blockCusinierFunctions(unChef);
 //		long startTime = System.currentTimeMillis();
+
 //		while (System.currentTimeMillis()-startTime <unTemps){
 //
 //		}
-		unChef.updateStatusOfCook("traville");
+
 		unBlockCuisinier(unChef);
 		deletePlainte();
 	}
-	private void suspendIndef(Cuisinier unChef){
-		unChef.updateStatusOfCook("Banned");
-		blockCusinierFunctions(unChef);
-		deletePlainte();
+
+	public static void suspendIndef(Cuisinier unChef){
+		unChef.banCuisinier();
+//		blockCusinierFunctions(unChef);
+//		deletePlainte();
 	}
-	private void blockCusinierFunctions(Cuisinier unChef){
+	public static void blockCusinierFunctions(Cuisinier unChef){
 		unChef.logOut();
 	}
-	public void unBlockCuisinier(Cuisinier unChef){
-		unChef.updateStatusOfCook("travaille");
+	public static void unBlockCuisinier(Cuisinier unChef){
+
+
 	}
 
 	//reject plainte
-	private void deletePlainte(){
+	private static void deletePlainte(){
 		//to implement
 	}
 

@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * */
 public class HomeScreenAdmin extends HomeScreen {
     //Firebase variable
-    private DatabaseReference cuisinierDatabse;
+    private DatabaseReference cuisinierDatabase;
     private Button complaints;
     private Button best_chefs;
     private Button last_complaints;
@@ -37,6 +37,8 @@ public class HomeScreenAdmin extends HomeScreen {
     //Array
     private ArrayList<String> arrayList = new ArrayList<String>();
     private ArrayAdapter<String> adapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,8 +62,8 @@ public class HomeScreenAdmin extends HomeScreen {
         adapter = new ArrayAdapter<String>( this, android.R.layout.simple_list_item_1,arrayList);
         listOfComplainsView.setAdapter(adapter);
 
-        DatabaseReference cuisinierDatabse = FirebaseDatabase.getInstance().getReference("lesPlaintes");
-        cuisinierDatabse.addValueEventListener(new ValueEventListener() {
+        cuisinierDatabase = FirebaseDatabase.getInstance().getReference("Plaintes");
+        cuisinierDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                 arrayList.clear();
@@ -84,6 +86,7 @@ public class HomeScreenAdmin extends HomeScreen {
         Intent intent = new Intent(this, BanActivity.class);
         startActivity(intent);
     }
+
 
 
 }

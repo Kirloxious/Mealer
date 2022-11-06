@@ -1,5 +1,8 @@
 package com.example.mealer24;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 /**
  * Classe Plaintes
  * Has a description of the problem filed by a Client of a meal provided by a Cuisinier
@@ -12,11 +15,12 @@ public class Plaintes {
 	private Cuisinier cuisinierQuiADesPlaintes;
 	private Client clientQuiAFaitLaPlainte;
 	private String description;
+	private String plainteId;
 
 	//initialization methode for Plaintes
-	public Plaintes(Cuisinier cuisinierQuiADesPlaintes,Client clientQuiAFaitLaPlainte, String description ) {
-		this.cuisinierQuiADesPlaintes = cuisinierQuiADesPlaintes;
-		this.clientQuiAFaitLaPlainte =clientQuiAFaitLaPlainte;
+	public Plaintes(Account cuisinierQuiADesPlaintes,Account clientQuiAFaitLaPlainte, String description) {
+		this.cuisinierQuiADesPlaintes = (Cuisinier) cuisinierQuiADesPlaintes;
+		this.clientQuiAFaitLaPlainte = (Client) clientQuiAFaitLaPlainte;
 		this.description = description;
 	}
 
@@ -31,9 +35,25 @@ public class Plaintes {
 		return description;
 	}
 
+	public void setId(String id){
+		this.plainteId = id;
+	}
+
 	//methode to change the status of a cuisinier from "travaille" to either "suspendu temporairement" ou "suspendu indéfiniment"
 	public void changeCuisinierStatus() {
 		//code to evaluate and change chef status depending on what is being used to evaluate that.
+	}
+
+	//adds the plaint to the database
+	public void addPlaintToDatabase(){
+		//Database
+		DatabaseReference cuisinierDatabase = FirebaseDatabase.getInstance().getReference("Plaintes");
+		//create account object and add account to Clients database
+		String id = cuisinierDatabase.push().getKey();
+		Plaintes plaintes = new Plaintes(this.cuisinierQuiADesPlaintes, this.clientQuiAFaitLaPlainte, this.description);
+		plaintes.setId(id);
+		//Creates a nested node in Clients database with all of the object info
+		cuisinierDatabase.child(id).setValue(plaintes);
 	}
 
 }

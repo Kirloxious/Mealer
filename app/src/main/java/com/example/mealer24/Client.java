@@ -11,6 +11,8 @@ public class Client extends Account {
 	private CreditCard creditCardInfo;
 	private LinkedList<DemandeAchat>tousRepas= new LinkedList<DemandeAchat>();
 
+	//Empty constructor
+	public Client(){}
 
 	//initialization methode for Client
 	public Client(String email, String pwd, String nom, String nomFamille, String address, CreditCard cci) {

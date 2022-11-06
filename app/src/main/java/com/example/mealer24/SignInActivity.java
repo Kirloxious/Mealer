@@ -63,9 +63,14 @@ public class SignInActivity extends AppCompatActivity {
                 if(user_acc.getPwd().equals(password)) {
                     Intent intent;
                     if(role.equalsIgnoreCase("cusinier")) {
+                        Cuisinier userCuisinier = snapshot.getValue(Cuisinier.class);
                         intent = new Intent(SignInActivity.this, HomeScreenChef.class);
+                        if(userCuisinier.isBanned()){
+                            intent.putExtra("isBanned", true);
+                        }
                     }else if(role.equalsIgnoreCase("client")) {
                         intent = new Intent(SignInActivity.this, HomeScreenClient.class);
+
                     }else if(role.equalsIgnoreCase("admin")) {
                         intent = new Intent(SignInActivity.this, HomeScreenAdmin.class);
                     }else throw new RuntimeException();

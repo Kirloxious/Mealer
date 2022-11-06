@@ -1,9 +1,11 @@
 package com.example.mealer24;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         sign_in_as_client.setOnClickListener(this::SendToSignInPage);
         sign_in_as_admin.setOnClickListener(this::SendToSignInPage);
         sign_in_as_cuisinier.setOnClickListener(this::SendToSignInPage);
+
+
+
 
 //        createAdminLogin();
 

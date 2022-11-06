@@ -1,11 +1,18 @@
 package com.example.mealer24;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 public class BanActivity extends AppCompatActivity {
     private EditText cuisinier_id;
@@ -27,8 +34,21 @@ public class BanActivity extends AppCompatActivity {
         String cuisinier_username = cuisinier_id.getText().toString();
         String complaint_number = complaint_id.getText().toString();
 
+
         if(!cuisinier_username.isEmpty()) {
-            // ban cuisinier
+            DatabaseReference userDatabaseRef = Account.getAccountDatabaseReference("Cuisiniers", cuisinier_username);
+            userDatabaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Cuisinier user_acc = snapshot.getValue(Cuisinier.class);
+                    Admin.suspendIndef(user_acc);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
         }
 
         // dismiss complaint number

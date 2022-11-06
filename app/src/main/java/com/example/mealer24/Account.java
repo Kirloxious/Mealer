@@ -1,10 +1,28 @@
 package com.example.mealer24;
+import android.content.Intent;
+import android.util.Log;
+
+
+import androidx.annotation.NonNull;
+
 import com.google.firebase.*;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class Account
  */
 public class Account {
+
+
+
 	private String email;
 	private String pwd;
 	private String nom;
@@ -62,7 +80,27 @@ public class Account {
 		logInStatus = false;
 	}
 
+	//Gets an account database reference
+	public static DatabaseReference getAccountDatabaseReference(String role, String email){
+		UTF8Encoder encodedEmail = new UTF8Encoder(email);
+		String encodedEmailAsString = encodedEmail.getEncodedString();
+		String Role = role.substring(0, 1).toUpperCase() + role.substring(1);
+		String user_path = "Users/" + Role + "/" + encodedEmailAsString;
+		DatabaseReference ref = FirebaseDatabase.getInstance().getReference(user_path);
+		return ref;
+	}
 
 
+	@Exclude
+	public Map<String, Object> toMap() {
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("email", email);
+		result.put("pwd", pwd);
+		result.put("nom", nom);
+		result.put("nomFamille", nomFamille);
+		result.put("address", address);
+
+		return result;
+	}
 
 }
