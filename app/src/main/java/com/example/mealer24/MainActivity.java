@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         Button button_clicked = findViewById(id);
 
         Intent intent = new Intent(this, SignInActivity.class);
-        intent.putExtra("Role", button_clicked.getText().toString());
+        intent.putExtra(Utils.INTENT_EXTRA_ROLE, button_clicked.getText().toString());
         startActivity(intent);
     }
 

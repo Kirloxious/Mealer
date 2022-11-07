@@ -35,7 +35,7 @@ public class SignInActivity extends AppCompatActivity {
         sign_in_password = findViewById(R.id.SignInPassword);
         sign_in_login_button = findViewById(R.id.SignInLoginButton);
         sign_in_sign_up_button = findViewById(R.id.SignInSignUpButton);
-        role = getIntent().getStringExtra("Role");
+        role = getIntent().getStringExtra(Utils.INTENT_EXTRA_ROLE);
 
         setSignInTextAccordingToRole();
         hideSignUpButtonIfAdmin();
@@ -49,7 +49,7 @@ public class SignInActivity extends AppCompatActivity {
         String encodedEmailAsString = encodedEmail.getEncodedString();
         String password = sign_in_password.getText().toString();
 
-        String user_path = "Users/" + transformRoleToDbPath(role) + "/" + encodedEmailAsString;
+        String user_path = Utils.getPathFrom(Utils.DB_USER_PATH, Utils.transformRoleToDbPath(role), encodedEmailAsString);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference(user_path);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -62,7 +62,7 @@ public class SignInActivity extends AppCompatActivity {
                 Account user_acc = snapshot.getValue(Account.class);
                 if(user_acc.getPwd().equals(password)) {
                     Intent intent;
-                    if(role.equalsIgnoreCase("cuisinier")) {
+                    if(role.equalsIgnoreCase(Utils.CUISINIER_ROLE)) {
                         Cuisinier userCuisinier = snapshot.getValue(Cuisinier.class);
                         System.out.println(userCuisinier.getStatusOfCook());
                         if(!userCuisinier.getStatusOfCook().equalsIgnoreCase("travaille")) {
@@ -73,10 +73,10 @@ public class SignInActivity extends AppCompatActivity {
                         }
                         intent = new Intent(SignInActivity.this, HomeScreenChef.class);
 
-                    }else if(role.equalsIgnoreCase("client")) {
+                    }else if(role.equalsIgnoreCase(Utils.CLIENT_ROLE)) {
                         intent = new Intent(SignInActivity.this, HomeScreenClient.class);
 
-                    }else if(role.equalsIgnoreCase("admin")) {
+                    }else if(role.equalsIgnoreCase(Utils.ADMIN_ROLE)) {
                         intent = new Intent(SignInActivity.this, HomeScreenAdmin.class);
                     }else throw new RuntimeException();
 
@@ -97,14 +97,7 @@ public class SignInActivity extends AppCompatActivity {
     }
 
 
-    //this is a very ugly hack. We seriously need to change it. It shouldn't be that hard to fix.
-    public String transformRoleToDbPath(String role) {
-        if(role.equalsIgnoreCase("cuisinier")) return "Cuisiniers";
-        if(role.equalsIgnoreCase("client")) return "Clients";
-        if(role.equalsIgnoreCase("admin")) return "Admin";
-        showMessage("This should never happen");
-        return null;
-    }
+
 
     private void setSignInTextAccordingToRole() {
         String text = sign_in_text.getText().toString();

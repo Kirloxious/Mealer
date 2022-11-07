@@ -56,7 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         //Type of account being created
-        role = getIntent().getStringExtra("Role");
+        role = getIntent().getStringExtra(Utils.INTENT_EXTRA_ROLE);
 
         signUpEmail = findViewById(R.id.SignUpEmail);
         signUpPassword = findViewById(R.id.SignUpPassword);
@@ -99,7 +99,6 @@ public class SignUpActivity extends AppCompatActivity {
         rootNode = FirebaseDatabase.getInstance();
 
 
-        //Get inputs as strings
         String email = signUpEmail.getText().toString();
         //get encoded email to input in firebase
         UTF8Encoder encodedEmail = new UTF8Encoder(email);
@@ -115,7 +114,6 @@ public class SignUpActivity extends AppCompatActivity {
         String creditCardNbr = signUpCardNumber.getText().toString();
         String creditCardExp = signUpExpirationDate.getText().toString();
         String creditCardCVV = signUpCVV.getText().toString();
-        //maybe have credit card class to store credit card info?
         CreditCard fullCreditCardInfo = new CreditCard(creditCardNbr, creditCardExp, creditCardCVV);
         String description = signUpUserDescription.getText().toString();
 
@@ -126,22 +124,24 @@ public class SignUpActivity extends AppCompatActivity {
         } else {
             //Check if an account was already created using input email
             //if no email exists in database, add a user
-            rootNode.getReference().child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+            rootNode.getReference().child(Utils.DB_USER_PATH).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.hasChild("Cuisiniers/" + encodedEmailAsString) || snapshot.hasChild("Clients/" + encodedEmailAsString)) {
+                    String user_path_as_cuisinier = Utils.getPathFrom(Utils.DB_CUISINIER_PATH, encodedEmailAsString);
+                    String user_path_as_client = Utils.getPathFrom(Utils.DB_CLIENT_PATH, encodedEmailAsString);
+                    if (snapshot.hasChild(user_path_as_cuisinier) || snapshot.hasChild(user_path_as_client)) {
                         Toast.makeText(SignUpActivity.this, "Username already exists", Toast.LENGTH_SHORT).show();
                     }
                     //email is not used -> create account
                     else {
-                        if (role.equalsIgnoreCase("cuisinier")) {
-                            reference = rootNode.getReference("Users/Cuisiniers");
+                        if (role.equalsIgnoreCase(Utils.CUISINIER_ROLE)) {
+                            reference = rootNode.getReference(Utils.getPathFrom(Utils.DB_USER_PATH, Utils.DB_CUISINIER_PATH));
                             //create account object and add account to Cusiniers database
                             Account newAccount = new Cuisinier(email, password, nom, nomFamille, fullAddress, description, null);
                             //Creates a nested node in Cuisiniers database with all of the object info
                             reference.child(encodedEmailAsString).setValue(newAccount);
-                        } else if (role.equalsIgnoreCase("client")) {
-                            reference = rootNode.getReference("Users/Clients");
+                        } else if (role.equalsIgnoreCase(Utils.CLIENT_ROLE)) {
+                            reference = rootNode.getReference(Utils.getPathFrom(Utils.DB_USER_PATH, Utils.DB_CLIENT_PATH));
                             //create account object and add account to Clients database
                             Account newAccount = new Client(email, password, nom, nomFamille, fullAddress, fullCreditCardInfo);
                             //Creates a nested node in Clients database with all of the object info
@@ -164,13 +164,13 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     private void signUpHide() {
-        if (role.equalsIgnoreCase("cuisinier")) {
+        if (role.equalsIgnoreCase(Utils.CUISINIER_ROLE)) {
             signUpCreditCardInfotext.setVisibility(View.GONE);
             signUpCardNumber.setVisibility(View.GONE);
             signUpCVV.setVisibility(View.GONE);
             signUpExpirationDate.setVisibility(View.GONE);
         }
-        if (role.equalsIgnoreCase("client")) {
+        if (role.equalsIgnoreCase(Utils.CLIENT_ROLE)) {
             signUpVoidCheque.setVisibility(View.GONE);
             signUpVoidChequetext.setVisibility(View.GONE);
             signUpUserDescription.setVisibility(View.GONE);
