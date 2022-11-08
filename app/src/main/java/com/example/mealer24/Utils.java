@@ -6,6 +6,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 public class Utils {
+
     public static final String CUISINIER_ROLE = "cuisinier";
     public static final String ADMIN_ROLE = "admin";
     public static final String CLIENT_ROLE = "client";
@@ -44,9 +45,9 @@ public class Utils {
 
     /**
      * Gets an account database reference from given role and email
-     * @param role role of the account (Client, Cusinier, admin)
-     * @param email email of account to search or create in database
-     * @return The Firebase database instance reference of the give account
+     * @param role role of the account (Client, Cuisinier, Admin)
+     * @param email email of the account to search in database
+     * @return The Firebase database instance reference of the given account
      */
     public static DatabaseReference getAccountDatabaseReference(String role, String email){
         UTF8Encoder encodedEmail = new UTF8Encoder(email);

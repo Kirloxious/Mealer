@@ -45,12 +45,9 @@ public class SignInActivity extends AppCompatActivity {
 
     private void sendToHomeScreen(View view) {
         String email = sign_in_email.getText().toString();
-        UTF8Encoder encodedEmail = new UTF8Encoder(email);
-        String encodedEmailAsString = encodedEmail.getEncodedString();
         String password = sign_in_password.getText().toString();
 
-        String user_path = Utils.getPathFrom(Utils.DB_USER_PATH, Utils.transformRoleToDbPath(role), encodedEmailAsString);
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(user_path);
+        DatabaseReference ref = Utils.getAccountDatabaseReference(role, email);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

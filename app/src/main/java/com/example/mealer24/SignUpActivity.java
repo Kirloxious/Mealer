@@ -23,8 +23,6 @@ public class SignUpActivity extends AppCompatActivity {
     private String TAG = "SignUpActivity";
 
     private String role;
-    private int count;
-
 
     //Database reference
     private FirebaseDatabase rootNode;
@@ -34,7 +32,6 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText signUpEmail;
     private EditText signUpPassword;
     private Button btnRegister;
-
     private EditText signUpFirstName;
     private EditText signUpLastName;
     private EditText signUpStreetAddress;
@@ -55,42 +52,21 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        //Type of account being created
-        role = getIntent().getStringExtra(Utils.INTENT_EXTRA_ROLE);
 
-        signUpEmail = findViewById(R.id.SignUpEmail);
-        signUpPassword = findViewById(R.id.SignUpPassword);
-        btnRegister = findViewById(R.id.RegisterButton);
-        signUpFirstName = findViewById(R.id.SignUpFirstName);
-        signUpLastName = findViewById(R.id.SignUpLastName);
-        signUpStreetAddress = findViewById(R.id.SignUpStreet);
-        signUpCity = findViewById(R.id.SignUpCity);
-        signUpPostal = findViewById(R.id.SignUpPostal);
-        signUpCreditCardInfotext = findViewById(R.id.SignUpCreditCardText);
-        signUpCardNumber = findViewById(R.id.SignUpCardNumber);
-        signUpExpirationDate = findViewById(R.id.SignUpExpiration);
-        signUpCVV = findViewById(R.id.SignUpCVV);
-        signUpVoidChequetext = findViewById(R.id.SignUpVoidCheckText);
-        signUpVoidCheque = findViewById(R.id.SignUpVoidCheque);
-        signUpUserDescriptiontext = findViewById(R.id.SignUpTextInformation);
-        signUpUserDescription = findViewById(R.id.SignUpInformation);
+        initialiseLayoutVariables();
 
-
+        //Hide inputs fields based on signup role
         signUpHide();
 
+        //Set up the inputs fields for:
+        //credit card info and postal code
         creditCardSetUp();
-
         expirationDateSetUp();
-
         postalCodeSignup();
 
 
+        btnRegister.setOnClickListener(view -> {createAccount();});
 
-        btnRegister.setOnClickListener(view -> {
-            createAccount();
-
-
-        });
     }
 
     private void createAccount() {
@@ -98,23 +74,27 @@ public class SignUpActivity extends AppCompatActivity {
         //Get database instance
         rootNode = FirebaseDatabase.getInstance();
 
-
-        String email = signUpEmail.getText().toString();
         //get encoded email to input in firebase
+        String email = signUpEmail.getText().toString();
         UTF8Encoder encodedEmail = new UTF8Encoder(email);
         String encodedEmailAsString = encodedEmail.getEncodedString();
+
         String password = signUpPassword.getText().toString();
         String nom = signUpFirstName.getText().toString();
         String nomFamille = signUpLastName.getText().toString();
+
+        //Address
         String streetAddress = signUpStreetAddress.getText().toString();
         String city = signUpCity.getText().toString();
         String postalCode = signUpPostal.getText().toString();
-        //make full address
         String fullAddress = streetAddress + " " + city + ", " + postalCode;
+
+        //Credit card
         String creditCardNbr = signUpCardNumber.getText().toString();
         String creditCardExp = signUpExpirationDate.getText().toString();
         String creditCardCVV = signUpCVV.getText().toString();
         CreditCard fullCreditCardInfo = new CreditCard(creditCardNbr, creditCardExp, creditCardCVV);
+
         String description = signUpUserDescription.getText().toString();
 
 
@@ -153,9 +133,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
+                public void onCancelled(@NonNull DatabaseError error) {}
             });
 
         }
@@ -170,6 +148,7 @@ public class SignUpActivity extends AppCompatActivity {
             signUpCVV.setVisibility(View.GONE);
             signUpExpirationDate.setVisibility(View.GONE);
         }
+
         if (role.equalsIgnoreCase(Utils.CLIENT_ROLE)) {
             signUpVoidCheque.setVisibility(View.GONE);
             signUpVoidChequetext.setVisibility(View.GONE);
@@ -185,14 +164,10 @@ public class SignUpActivity extends AppCompatActivity {
             int count =0;
 
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -223,14 +198,10 @@ public class SignUpActivity extends AppCompatActivity {
             int count =0;
 
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -262,14 +233,10 @@ public class SignUpActivity extends AppCompatActivity {
             int count =0;
 
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -291,6 +258,30 @@ public class SignUpActivity extends AppCompatActivity {
                 count = signUpPostal.getText().toString().length();
             }
         });
+    }
+
+    private void initialiseLayoutVariables(){
+
+        //Type of account being created
+        role = getIntent().getStringExtra(Utils.INTENT_EXTRA_ROLE);
+
+        //Activity layout
+        signUpEmail = findViewById(R.id.SignUpEmail);
+        signUpPassword = findViewById(R.id.SignUpPassword);
+        btnRegister = findViewById(R.id.RegisterButton);
+        signUpFirstName = findViewById(R.id.SignUpFirstName);
+        signUpLastName = findViewById(R.id.SignUpLastName);
+        signUpStreetAddress = findViewById(R.id.SignUpStreet);
+        signUpCity = findViewById(R.id.SignUpCity);
+        signUpPostal = findViewById(R.id.SignUpPostal);
+        signUpCreditCardInfotext = findViewById(R.id.SignUpCreditCardText);
+        signUpCardNumber = findViewById(R.id.SignUpCardNumber);
+        signUpExpirationDate = findViewById(R.id.SignUpExpiration);
+        signUpCVV = findViewById(R.id.SignUpCVV);
+        signUpVoidChequetext = findViewById(R.id.SignUpVoidCheckText);
+        signUpVoidCheque = findViewById(R.id.SignUpVoidCheque);
+        signUpUserDescriptiontext = findViewById(R.id.SignUpTextInformation);
+        signUpUserDescription = findViewById(R.id.SignUpInformation);
     }
 
 
