@@ -1,5 +1,8 @@
 package com.example.mealer24;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.List;
 
 public class Utils {
@@ -13,9 +16,14 @@ public class Utils {
     public static final String INTENT_EXTRA_ROLE = "Role";
 
 
-    // Transforms a list of strings to a valid path.
-    // Example:
-    // getPathFrom("I", "see", "you") = "I/see/you"
+    /**
+     * Transforms a list of strings to a valid path.
+     * Example:
+     *  getPathFrom("I", "see", "you"),
+     *  returns: "I/see/you"
+     * @param paths
+     * @return
+     */
     public static String getPathFrom(String... paths) {
         String ret = "";
         for(int i = 0; i < paths.length - 1; ++i) {
@@ -32,6 +40,25 @@ public class Utils {
         if(role.equalsIgnoreCase(Utils.ADMIN_ROLE)) return Utils.DB_ADMIN_PATH;
         throw new RuntimeException("Unknown role: [Utils.java] __FUNC__ : transformRoleToDbPath");
     }
+
+
+    /**
+     * Gets an account database reference from given role and email
+     * @param role role of the account (Client, Cusinier, admin)
+     * @param email email of account to search or create in database
+     * @return The Firebase database instance reference of the give account
+     */
+    public static DatabaseReference getAccountDatabaseReference(String role, String email){
+        UTF8Encoder encodedEmail = new UTF8Encoder(email);
+        String encodedEmailAsString = encodedEmail.getEncodedString();
+        String Role = transformRoleToDbPath(role);
+        String user_path = getPathFrom(DB_USER_PATH, Role, encodedEmailAsString);
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(user_path);
+        return ref;
+    }
+
+
+
 
     private Utils() {}
 }

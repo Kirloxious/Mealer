@@ -80,16 +80,6 @@ public class Account {
 		logInStatus = false;
 	}
 
-	//Gets an account database reference
-	public static DatabaseReference getAccountDatabaseReference(String role, String email){
-		UTF8Encoder encodedEmail = new UTF8Encoder(email);
-		String encodedEmailAsString = encodedEmail.getEncodedString();
-		String Role = role.substring(0, 1).toUpperCase() + role.substring(1);
-		String user_path = "Users/" + Role + "/" + encodedEmailAsString;
-		DatabaseReference ref = FirebaseDatabase.getInstance().getReference(user_path);
-		return ref;
-	}
-
 
 	@Exclude
 	public Map<String, Object> toMap() {

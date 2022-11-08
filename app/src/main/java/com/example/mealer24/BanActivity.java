@@ -36,7 +36,7 @@ public class BanActivity extends AppCompatActivity {
 
 
         if(!cuisinier_username.isEmpty()) {
-            DatabaseReference userDatabaseRef = Account.getAccountDatabaseReference("Cuisiniers", cuisinier_username);
+            DatabaseReference userDatabaseRef = Utils.getAccountDatabaseReference("Cuisiniers", cuisinier_username);
             userDatabaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
