@@ -71,7 +71,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void createAccount() {
 
-        //Get database instance
         rootNode = FirebaseDatabase.getInstance();
 
         //get encoded email to input in firebase
