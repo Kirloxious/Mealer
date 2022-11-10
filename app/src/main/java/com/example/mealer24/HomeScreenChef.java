@@ -1,6 +1,8 @@
 package com.example.mealer24;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,11 +34,15 @@ public class HomeScreenChef extends HomeScreen {
         order_requests = findViewById(R.id.OrderRequests);
         previous_meals = findViewById(R.id.PrevMeals);
         prepare_meal = findViewById(R.id.Meal);
+        my_meals = findViewById(R.id.MyMeals);
 
         logoutBtn = findViewById(R.id.logoutBtn);
         logoutBtn.setOnClickListener(view -> logoutUser());
 
+        my_meals.setOnClickListener(this::sendToRepasPage);
+
     }
+
     //cusinier is banned,
     private void showMessageIfBanned(){
 
@@ -46,6 +52,14 @@ public class HomeScreenChef extends HomeScreen {
         }
 
     }
+    public void showRepas(){
+        //so do I put this or do I put an onlisten to button mesRepas that opens a new activity??
 
+    }
+    public void sendToRepasPage(View view){
+
+        Intent intent = new Intent(this, RepasActivity.class);
+        startActivity(intent);
+    }
 
 }
