@@ -1,5 +1,8 @@
 package com.example.mealer24;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Classe Repas
  * Gardes les informations d'un repas(ingredients, allergies, prix, description, type de cuisines, type de repas, descriptions, nom du repas)
@@ -9,20 +12,21 @@ package com.example.mealer24;
 public class Repas {
 
 	//Repas class variables
+	private Cuisinier cuisinier;
 	private String nomDuRepas;
-	private String cuisinierEmail;
 	private boolean statusPresense;
 	private String typeDeRepas;
 	private String typeDeCuisine;
 	private String ingredients;
 	private String allergies;
-	private float prix;
+	private double prix;
 	private String description;
 	
 	//initialization methode for Repas
-	public Repas(String description,String nomDuRepas,String cuisinierEmail, Boolean status, String typeDeRepas, String typeDeCuisine, String ingredients, String allergies, float prix) {
+	public Repas(Cuisinier cuisinier, String description,String nomDuRepas, Boolean status, String typeDeRepas, String typeDeCuisine, String ingredients, String allergies, double prix) {
+		this.cuisinier = cuisinier;
+
 		this.nomDuRepas = nomDuRepas;
-		this.cuisinierEmail = cuisinierEmail;
 		this.statusPresense = status;
 		this.typeDeRepas = typeDeRepas;
 		this.typeDeCuisine = typeDeCuisine;
@@ -37,7 +41,7 @@ public class Repas {
 	public void setNomDuRepas(String nomRepas) {nomDuRepas = nomRepas;}
 
 	//get email of a Cuisinier
-	public String getCuisinierEmail() {return cuisinierEmail;}
+	public Cuisinier getCuisinierEmail() {return cuisinier;}
 
 	//get the status of a meal (available for order or not)
 	public boolean getStatus() {return statusPresense;}
@@ -63,7 +67,7 @@ public class Repas {
 	public void setAllergies(String allergies) {this.allergies= allergies;}
 
 	//get and set the price of a meal
-	public float getPrix() {return prix;}
+	public double getPrix() {return prix;}
 	public void setPrix(float prix) {this.prix = prix;}
 
 	//cette fonction sert à inverser le statut de présence du repas sur le menu
@@ -72,5 +76,21 @@ public class Repas {
 	}
 
 
+	public Map<String, Object> toMapRepas(){
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("description", description);
+		result.put("nomDuRepas", nomDuRepas);
+		result.put("status", statusPresense);
+		result.put("typeDeRepas", typeDeRepas);
+		result.put("typeDeCuisine", typeDeCuisine);
+		result.put("ingredients", ingredients);
+		result.put("allergies", allergies);
+		result.put("prix", prix);
+
+
+
+
+		return result;
+	}
 	
 }

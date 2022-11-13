@@ -81,6 +81,7 @@ public class Account {
 	}
 
 
+	//We need this to update values in firebase
 	@Exclude
 	public Map<String, Object> toMap() {
 		HashMap<String, Object> result = new HashMap<>();

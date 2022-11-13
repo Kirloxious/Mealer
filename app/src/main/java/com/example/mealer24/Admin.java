@@ -1,7 +1,7 @@
 package com.example.mealer24;
 
 import java.sql.Time;
-import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Classe Admin
@@ -20,7 +20,7 @@ public class Admin extends Account {
 	of the getCuisinierPlaintes() methode in the Cuisinier class*/
 	private void accessPlaintes(Cuisinier unCuisinier) {
 		//go through all cooks' plainte list.
-		LinkedList<Plaintes> laListeDesPlaintes = unCuisinier.getCuisinierPlaintes();
+		List<Plaintes> laListeDesPlaintes = unCuisinier.getCuisinierPlaintes();
 		for (int i = 0;i<laListeDesPlaintes.size();i++){
 
 		}

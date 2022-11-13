@@ -6,6 +6,7 @@ import com.google.firebase.database.Exclude;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /***
@@ -21,11 +22,11 @@ public class Cuisinier extends Account {
 
 	//Cuisinier class variables
 	private String description;
-	private LinkedList<Repas> mesRepas = new LinkedList<Repas>();
-	private LinkedList<DemandeAchat> toutAchat = new LinkedList<DemandeAchat>();
+	private List<Repas> mesRepas = new LinkedList<Repas>();
+	private List<DemandeAchat> toutAchat = new LinkedList<DemandeAchat>();
 	private float evaluation;
 	private int numEvaluation;
-	private LinkedList<Plaintes> cuisinierPlaintes = new LinkedList<Plaintes>();
+	private List<Plaintes> cuisinierPlaintes = new LinkedList<Plaintes>();
 	private int nombreRepasVendu;
 	private boolean isBanned = false;
 	private String statusOfCook = "travaille";
@@ -56,7 +57,7 @@ public class Cuisinier extends Account {
 	}
 
 	//get and add to list of all the meals for a Cuisinier
-	public LinkedList<Repas> getListOfAllRepas() {
+	public List<Repas> getListOfAllRepas() {
 		return mesRepas;
 	}
 	public void addToListOfRepas(Repas nouveauRepas) {
@@ -73,8 +74,8 @@ public class Cuisinier extends Account {
 	}
 
 
-	public LinkedList<Repas> getTodaysMenuOnly(){
-		LinkedList<Repas> todayMenu = new LinkedList<Repas>();
+	public List<Repas> getTodaysMenuOnly(){
+		List<Repas> todayMenu = new LinkedList<Repas>();
 		for (int i =0; i<mesRepas.size();i++) {
 			if (mesRepas.get(i).getStatus()==true) {
 				todayMenu.add(mesRepas.get(i));
@@ -120,14 +121,14 @@ public class Cuisinier extends Account {
 		toutAchat.add(uneDemande);
 	
 	}
-	public LinkedList<DemandeAchat> getListeDeDemande(){
+	public List<DemandeAchat> getListeDeDemande(){
 		return toutAchat;
 		//make it so that it returns only one
 		
 	}
 
 	//get(for admin) and add(by Client) plaintes to a Cuisinier
-	public LinkedList<Plaintes> getCuisinierPlaintes(){
+	public List<Plaintes> getCuisinierPlaintes(){
 		return cuisinierPlaintes;
 	}
 	public void addCuisinierPlaintes(Plaintes unePlainte) {
@@ -139,11 +140,18 @@ public class Cuisinier extends Account {
 		//to implement
 	}
 
+	public void updateCuisinier(DatabaseReference db){
+
+	}
+
+
+	//We need this to update values in firebase
 	@Exclude
 	public Map<String, Object> toMapCuisinier() {
 		Map<String, Object> result = this.toMap();
 		result.put("isBanned", isBanned);
 		result.put("description", description);
+
 
 
 		return result;

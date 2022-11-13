@@ -20,7 +20,7 @@ public class HomeScreenChef extends HomeScreen {
 
     private Button my_meals;
 
-    boolean isBanned;
+    private String userEmail;
 
 
     @Override
@@ -28,7 +28,7 @@ public class HomeScreenChef extends HomeScreen {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen_chef);
 
-        isBanned = getIntent().getBooleanExtra("isBanned", false);
+        userEmail = getIntent().getStringExtra("email");
 
         best_chefs = findViewById(R.id.BestChefs);
         order_requests = findViewById(R.id.OrderRequests);
@@ -43,22 +43,16 @@ public class HomeScreenChef extends HomeScreen {
 
     }
 
-    //cusinier is banned,
-    private void showMessageIfBanned(){
 
-        if(isBanned){
-
-            //hide buttons and show banned message
-        }
-
-    }
     public void showRepas(){
         //so do I put this or do I put an onlisten to button mesRepas that opens a new activity??
+
 
     }
     public void sendToRepasPage(View view){
 
         Intent intent = new Intent(this, RepasActivity.class);
+        intent.putExtra("email", userEmail);
         startActivity(intent);
     }
 

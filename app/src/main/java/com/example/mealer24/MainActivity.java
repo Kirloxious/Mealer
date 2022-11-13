@@ -14,6 +14,7 @@ import com.google.firebase.database.*;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 /**
  * This is the first screen for all users of the app.
@@ -43,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
         sign_in_as_cuisinier.setOnClickListener(this::SendToSignInPage);
 
 
+        test();
 
-
-//        createAdminLogin();
+//      createAdminLogin();
 
     }
 
@@ -69,5 +70,12 @@ public class MainActivity extends AppCompatActivity {
         ref.child(encodedEmailAsString).setValue(admin);
 
     }
+
+
+    private void test(){
+
+    }
+
+
 
 }
