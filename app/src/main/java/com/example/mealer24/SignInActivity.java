@@ -77,6 +77,7 @@ public class SignInActivity extends AppCompatActivity {
                         intent = new Intent(SignInActivity.this, HomeScreenAdmin.class);
                     }else throw new RuntimeException();
 
+                    //sends email to next intent to keep track of logged in user
                     intent.putExtra("email", email);
                     showMessage("Login successful");
                     startActivity(intent);

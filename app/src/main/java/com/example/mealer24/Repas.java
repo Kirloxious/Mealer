@@ -21,7 +21,12 @@ public class Repas {
 	private String allergies;
 	private double prix;
 	private String description;
-	
+
+	private String id;
+
+	//No arg constructor for firebase use
+	public Repas(){}
+
 	//initialization methode for Repas
 	public Repas(Cuisinier cuisinier, String description,String nomDuRepas, Boolean status, String typeDeRepas, String typeDeCuisine, String ingredients, String allergies, double prix) {
 		this.cuisinier = cuisinier;
@@ -70,6 +75,14 @@ public class Repas {
 	public double getPrix() {return prix;}
 	public void setPrix(float prix) {this.prix = prix;}
 
+
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	//cette fonction sert à inverser le statut de présence du repas sur le menu
 	public void flipStatus() {
 		statusPresense = !statusPresense;
@@ -86,9 +99,7 @@ public class Repas {
 		result.put("ingredients", ingredients);
 		result.put("allergies", allergies);
 		result.put("prix", prix);
-
-
-
+		result.put("id", id);
 
 		return result;
 	}

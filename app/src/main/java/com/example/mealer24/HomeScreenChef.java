@@ -28,6 +28,7 @@ public class HomeScreenChef extends HomeScreen {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen_chef);
 
+        //gets the email of active user
         userEmail = getIntent().getStringExtra("email");
 
         best_chefs = findViewById(R.id.BestChefs);

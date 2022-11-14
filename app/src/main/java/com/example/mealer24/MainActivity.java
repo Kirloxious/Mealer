@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         sign_in_as_cuisinier.setOnClickListener(this::SendToSignInPage);
 
 
-        test();
+        test(); //ignore
 
 //      createAdminLogin();
 
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    //test firebase stuff, ignore
     private void test(){
 
     }
