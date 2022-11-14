@@ -4,6 +4,7 @@ import android.util.Log;
 
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.*;
 import com.google.firebase.database.DataSnapshot;
@@ -19,7 +20,7 @@ import java.util.Map;
 /**
  * Class Account
  */
-public class Account {
+public class Account extends AppCompatActivity {
 
 
 
