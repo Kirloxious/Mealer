@@ -1,5 +1,6 @@
 package com.example.mealer24;
 import android.media.Image;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
@@ -138,11 +139,21 @@ public class Cuisinier extends Account {
 	//deletes the specified meal in the list of repas (mesRepas)
 	public void deleteRepas (Repas meal){
 		//to implement
+		if (mesRepas.contains(meal)) {
+			mesRepas.remove(meal);
+		}else{
+			showMessage("The specified meal does not exist. ");
+		}
 	}
 
 	public void updateCuisinier(DatabaseReference db){
 
 	}
+
+	public void showMessage(String message) {
+		Toast.makeText(Cuisinier.this, message, Toast.LENGTH_SHORT).show();
+	}
+
 
 
 	//We need this to update values in firebase
