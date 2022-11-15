@@ -150,7 +150,6 @@ public class Cuisinier extends Account {
 
 
 
-
 	//We need this to update values in firebase
 	@Exclude
 	public Map<String, Object> toMapCuisinier() {
