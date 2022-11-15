@@ -3,6 +3,7 @@ package com.example.mealer24;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -56,7 +57,7 @@ public class RepasActivity extends AppCompatActivity {
         lesRepas = new LinkedList<Repas>();
 
 
-
+        buttonVoirLeMenuDuJour.setOnClickListener(this::sendToAddRepasPage);
     }
 
     @Override
@@ -102,25 +103,15 @@ public class RepasActivity extends AppCompatActivity {
     //remove repas
 
 
-    //move this to AddRepas activity once the class is created.
-    private void addRepas(){
+    //Method to redirect user to add repas page.
+    public void sendToAddRepasPage(View view){
 
-        db.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Cuisinier cuisinier = snapshot.getValue(Cuisinier.class);
-                Repas newRepas = new Repas(cuisinier, "food", "apple", true, "apple", "", "", "", 0);
-                String key = db.child("mesRepas").push().getKey();
-                newRepas.setId(key);
-//                cuisinier.addToListOfRepas(newRepas);
-                Map<String, Object> repasMap = newRepas.toMapRepas();
-                db.child("mesRepas").child(key).updateChildren(repasMap);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
-        });
+        Intent intent = new Intent(this, AddRepasActivity.class);
+        intent.putExtra("email", userEmail);
+        startActivity(intent);
     }
+
+
 
 
 }

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddRepasActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/addRepasText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adding a Meal"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/nomRepasPlainText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:includeFontPadding="false"
+            android:inputType="textPersonName"
+            android:text="Name of Meal..."
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/typeDeRepasPlainText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Type of Meal..." />
+
+        <EditText
+            android:id="@+id/typeDeCuisinePlainText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Type of Cuisine..." />
+
+        <EditText
+            android:id="@+id/prixNumberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:text="Price ($)..." />
+
+        <EditText
+            android:id="@+id/descriptionTextMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:text="Description of Meal..." />
+
+        <EditText
+            android:id="@+id/ingredientsTextMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:text="Ingredients..." />
+
+        <EditText
+            android:id="@+id/allergiesTextMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:text="Allergies..." />
+
+        <Button
+            android:id="@+id/buttonAddRepas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Meal" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
