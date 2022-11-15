@@ -139,20 +139,14 @@ public class Cuisinier extends Account {
 	//deletes the specified meal in the list of repas (mesRepas)
 	public void deleteRepas (Repas meal){
 		//to implement
-		if (mesRepas.contains(meal)) {
-			mesRepas.remove(meal);
-		}else{
-			showMessage("The specified meal does not exist. ");
-		}
+
 	}
 
 	public void updateCuisinier(DatabaseReference db){
 
 	}
 
-	public void showMessage(String message) {
-		Toast.makeText(Cuisinier.this, message, Toast.LENGTH_SHORT).show();
-	}
+
 
 
 
