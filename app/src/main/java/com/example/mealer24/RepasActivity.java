@@ -99,7 +99,7 @@ public class RepasActivity extends AppCompatActivity {
 
 
 
-    //remove repas
+    //add repas to repas du jour
 
 
     //move this to AddRepas activity once the class is created.
