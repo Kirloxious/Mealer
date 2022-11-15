@@ -100,7 +100,7 @@ public class RepasActivity extends AppCompatActivity {
 
 
 
-    //remove repas
+    //add repas to repas du jour
 
 
     //Method to redirect user to add repas page.
