@@ -38,6 +38,10 @@
             android:minHeight="48dp"
             android:textSize="18sp" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
         <TextView
             android:id="@+id/nomTypeTitre"
             android:layout_width="match_parent"
@@ -71,6 +75,10 @@
 
         </LinearLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
         <TextView
             android:id="@+id/ingredientsTitre"
             android:layout_width="match_parent"
@@ -86,6 +94,10 @@
             android:hint="Ingredients"
             android:inputType="textMultiLine"
             android:minHeight="48dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
 
         <TextView
             android:id="@+id/prixTitre"
@@ -103,6 +115,10 @@
             android:inputType="numberDecimal"
             android:minHeight="48dp" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
         <TextView
             android:id="@+id/allergiesTitre"
             android:layout_width="match_parent"
@@ -119,6 +135,10 @@
             android:inputType="textMultiLine"
             android:minHeight="48dp" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
         <TextView
             android:id="@+id/descriptionTitre"
             android:layout_width="match_parent"
@@ -128,7 +148,7 @@
         <EditText
             android:id="@+id/descriptionTextMultiLine"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:ems="10"
             android:gravity="start|top"
             android:hint="Description"

@@ -27,34 +27,49 @@
             <ListView
                 android:id="@+id/listeDeRepas"
                 android:layout_width="match_parent"
-                android:layout_height="500dp" />
+                android:layout_height="571dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/addRepas_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
                 android:layout_weight="1"
                 android:text="Ajouter Repas" />
 
             <Button
                 android:id="@+id/deleteRepas_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
                 android:layout_weight="1"
                 android:text="Retirer Repas" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <Button
                 android:id="@+id/repasDuJour_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
                 android:layout_weight="1"
                 android:text="Liste de Repas du Jour" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Ajouter à la liste de repas du jour" />
         </LinearLayout>
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

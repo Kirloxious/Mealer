@@ -58,6 +58,7 @@ public class RepasActivity extends AppCompatActivity {
 
 
         buttonAdd.setOnClickListener(this::sendToAddRepasPage);
+        buttonVoirLeMenuDuJour.setOnClickListener(this::sendToAddRepasotd);
     }
 
     @Override
@@ -111,7 +112,12 @@ public class RepasActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void sendToAddRepasotd(View view){
 
+        Intent intent = new Intent(this, RepasActivityotd.class);
+        intent.putExtra("email", userEmail);
+        startActivity(intent);
+    }
 
 
 }
