@@ -34,7 +34,9 @@ public class AddRepasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_repas);
         userEmail = getIntent().getStringExtra("email");
         db = Utils.getAccountDatabaseReference(Utils.CUISINIER_ROLE, userEmail);
-
+        initialiseLayoutVariables();
+    }
+    public void initialiseLayoutVariables(){
         addRepasText = findViewById(R.id.addRepasText);
         addingRepasButton = findViewById(R.id.buttonAddRepas);
         nameRepas = findViewById(R.id.nomRepasPlainText);
@@ -44,7 +46,44 @@ public class AddRepasActivity extends AppCompatActivity {
         descriptionRepas = findViewById(R.id.descriptionTextMultiLine);
         ingredients = findViewById(R.id.ingredientsTextMultiLine);
         allergies = findViewById(R.id.allergiesTextMultiLine);
+    }
 
+    public void createRepas(){
+
+        //name of repas
+        String repasName = nameRepas.getText().toString();
+        UTF8Encoder encodedname = new UTF8Encoder(repasName);
+        String encodedNameAsString = encodedname.getEncodedString();
+
+        //type of repas
+        String repasType = typeRepas.getText().toString();
+        UTF8Encoder encodedtype = new UTF8Encoder(repasType);
+        String encodedTypeAsString = encodedtype.getEncodedString();
+
+        //type de cuisine
+        String repasCuisine = typeCuisine.getText().toString();
+        UTF8Encoder encodedCuisine = new UTF8Encoder(repasCuisine);
+        String encodedCuisineAsString = encodedCuisine.getEncodedString();
+
+        //description
+        String repasDescription = descriptionRepas.getText().toString();
+        UTF8Encoder encodeddescription = new UTF8Encoder(repasDescription);
+        String encodedDescriptionAsString = encodeddescription.getEncodedString();
+
+        //ingredients
+        String repasIngredients = ingredients.getText().toString();
+        UTF8Encoder encodedingredients = new UTF8Encoder(repasIngredients);
+        String encodedIngredientsAsString = encodedingredients.getEncodedString();
+
+        //allergies
+        String repasAllergies = allergies.getText().toString();
+        UTF8Encoder encodedallergies = new UTF8Encoder(repasAllergies);
+        String encodedAllergiesAsString = encodedallergies.getEncodedString();
+
+        //price //shouldn't this be int?
+        String repasPrice = priceRepas.getText().toString();
+        UTF8Encoder encodedprice = new UTF8Encoder(repasPrice);
+        String encodedPriceAsInteger = encodedprice.getEncodedString();
     }
     private void addRepas(){
 
