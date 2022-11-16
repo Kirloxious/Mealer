@@ -26,9 +26,9 @@ import java.util.Map;
 public class RepasActivity extends AppCompatActivity {
     private TextView mesRepas_in_text;
     private ListView listeDeRepas;
-    private Button buttonAdd;
-    private Button buttonRemove;
     private Button buttonVoirLeMenuDuJour;
+    private Button buttonRemove;
+    private Button buttonAdd;
     private DatabaseReference db;
     private DatabaseReference dbRepas;
     private LinkedList<Repas> lesRepas;
@@ -57,7 +57,7 @@ public class RepasActivity extends AppCompatActivity {
         lesRepas = new LinkedList<Repas>();
 
 
-        buttonVoirLeMenuDuJour.setOnClickListener(this::sendToAddRepasPage);
+        buttonAdd.setOnClickListener(this::sendToAddRepasPage);
     }
 
     @Override
