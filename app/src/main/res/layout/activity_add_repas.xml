@@ -20,48 +20,62 @@
             android:textAllCaps="true"
             android:textSize="20sp" />
 
+        <TextView
+            android:id="@+id/nomRepasTitre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name of Meal" />
+
         <EditText
             android:id="@+id/nomRepasPlainText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' "
             android:ems="10"
+            android:hint="Name"
             android:includeFontPadding="false"
             android:inputType="textPersonName"
-            android:text="Name of Meal..."
+            android:minHeight="48dp"
             android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/typeDeRepasPlainText"
+        <TextView
+            android:id="@+id/nomTypeTitre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Type of Meal..." />
+            android:text="Type" />
 
-        <EditText
-            android:id="@+id/typeDeCuisinePlainText"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Type of Cuisine..." />
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/prixNumberDecimal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberDecimal"
-            android:text="Price ($)..." />
+            <EditText
+                android:id="@+id/typeDeRepasPlainText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' "
+                android:ems="10"
+                android:hint="Type of Meal"
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
 
-        <EditText
-            android:id="@+id/descriptionTextMultiLine"
+            <EditText
+                android:id="@+id/typeDeCuisinePlainText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' "
+                android:ems="10"
+                android:hint="Type of Cuisine"
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/ingredientsTitre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:gravity="start|top"
-            android:inputType="textMultiLine"
-            android:text="Description of Meal..." />
+            android:text="List of Ingredients" />
 
         <EditText
             android:id="@+id/ingredientsTextMultiLine"
@@ -69,8 +83,31 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="start|top"
+            android:hint="Ingredients"
             android:inputType="textMultiLine"
-            android:text="Ingredients..." />
+            android:minHeight="48dp" />
+
+        <TextView
+            android:id="@+id/prixTitre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Price (CAD)" />
+
+        <EditText
+            android:id="@+id/prixNumberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="1234567890."
+            android:ems="10"
+            android:hint="Price ($)"
+            android:inputType="numberDecimal"
+            android:minHeight="48dp" />
+
+        <TextView
+            android:id="@+id/allergiesTitre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="List of Allergies" />
 
         <EditText
             android:id="@+id/allergiesTextMultiLine"
@@ -78,13 +115,31 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="start|top"
+            android:hint="Allergies"
             android:inputType="textMultiLine"
-            android:text="Allergies..." />
+            android:minHeight="48dp" />
+
+        <TextView
+            android:id="@+id/descriptionTitre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description of Meal" />
+
+        <EditText
+            android:id="@+id/descriptionTextMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Description"
+            android:inputType="textMultiLine"
+            android:minHeight="48dp" />
 
         <Button
             android:id="@+id/buttonAddRepas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add Meal" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
