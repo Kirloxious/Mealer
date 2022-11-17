@@ -15,6 +15,7 @@ public class Utils {
     public static final String DB_ADMIN_PATH = "Admin";
     public static final String DB_CLIENT_PATH = "Clients";
     public static final String INTENT_EXTRA_ROLE = "Role";
+    public static final String DB_REPAS_PATH = "mesRepas";
 
 
     /**

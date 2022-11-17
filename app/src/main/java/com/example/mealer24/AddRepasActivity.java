@@ -3,10 +3,13 @@ package com.example.mealer24;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,10 +35,62 @@ public class AddRepasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_repas);
+        initialiseLayoutVariables();
+
         userEmail = getIntent().getStringExtra("email");
         db = Utils.getAccountDatabaseReference(Utils.CUISINIER_ROLE, userEmail);
-        initialiseLayoutVariables();
+
+        addingRepasButton.setOnClickListener(view -> {addRepas();});
+
     }
+    private void addRepas(){
+
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //Get the cuisinier from database
+                Cuisinier cuisinier = snapshot.getValue(Cuisinier.class);
+                Repas newRepas = createRepas();
+                //create a new id for the repas
+                String key = db.child(Utils.DB_REPAS_PATH).push().getKey();
+                //set the id and the cuisnier email for future database references
+                newRepas.setId(key);
+                newRepas.setCuisinierEmail(cuisinier.getEmail());
+                //send the class to a map then update the database
+                //at the cuisnier's mesRepas path
+                Map<String, Object> repasMap = newRepas.toMapRepas();
+                db.child(Utils.DB_REPAS_PATH).child(key).updateChildren(repasMap);
+
+                Toast.makeText(AddRepasActivity.this, "Meal added successfully.", Toast.LENGTH_SHORT).show();
+                sendToRepasPage(); //send back to the repas page after it's been added to database
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+    }
+
+    public Repas createRepas(){
+        //name of repas
+        String repasName = nameRepas.getText().toString();
+        //type of repas
+        String repasType = typeRepas.getText().toString();
+        //type de cuisine
+        String repasCuisine = typeCuisine.getText().toString();
+        //description
+        String repasDescription = descriptionRepas.getText().toString();
+        //ingredients
+        String repasIngredients = ingredients.getText().toString();
+        //allergies
+        String repasAllergies = allergies.getText().toString();
+        //price
+        String repasPrice = priceRepas.getText().toString();
+        double repasPriceDouble = Double.parseDouble(repasPrice); //convert price to double
+
+        return new Repas(repasDescription, repasName, true, repasType, repasCuisine, repasIngredients, repasAllergies, repasPriceDouble);
+
+    }
+
     public void initialiseLayoutVariables(){
         addRepasText = findViewById(R.id.addRepasText);
         addingRepasButton = findViewById(R.id.buttonAddRepas);
@@ -48,59 +103,10 @@ public class AddRepasActivity extends AppCompatActivity {
         allergies = findViewById(R.id.allergiesTextMultiLine);
     }
 
-    public void createRepas(){
-
-        //name of repas
-        String repasName = nameRepas.getText().toString();
-        UTF8Encoder encodedname = new UTF8Encoder(repasName);
-        String encodedNameAsString = encodedname.getEncodedString();
-
-        //type of repas
-        String repasType = typeRepas.getText().toString();
-        UTF8Encoder encodedtype = new UTF8Encoder(repasType);
-        String encodedTypeAsString = encodedtype.getEncodedString();
-
-        //type de cuisine
-        String repasCuisine = typeCuisine.getText().toString();
-        UTF8Encoder encodedCuisine = new UTF8Encoder(repasCuisine);
-        String encodedCuisineAsString = encodedCuisine.getEncodedString();
-
-        //description
-        String repasDescription = descriptionRepas.getText().toString();
-        UTF8Encoder encodeddescription = new UTF8Encoder(repasDescription);
-        String encodedDescriptionAsString = encodeddescription.getEncodedString();
-
-        //ingredients
-        String repasIngredients = ingredients.getText().toString();
-        UTF8Encoder encodedingredients = new UTF8Encoder(repasIngredients);
-        String encodedIngredientsAsString = encodedingredients.getEncodedString();
-
-        //allergies
-        String repasAllergies = allergies.getText().toString();
-        UTF8Encoder encodedallergies = new UTF8Encoder(repasAllergies);
-        String encodedAllergiesAsString = encodedallergies.getEncodedString();
-
-        //price //shouldn't this be int?
-        String repasPrice = priceRepas.getText().toString();
-        UTF8Encoder encodedprice = new UTF8Encoder(repasPrice);
-        String encodedPriceAsInteger = encodedprice.getEncodedString();
+    public void sendToRepasPage(){
+        Intent intent = new Intent(this, RepasActivity.class);
+        intent.putExtra("email", userEmail);
+        startActivity(intent);
     }
-    private void addRepas(){
 
-        db.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Cuisinier cuisinier = snapshot.getValue(Cuisinier.class);
-                Repas newRepas = new Repas(cuisinier, "food", "apple", true, "apple", "", "", "", 0);
-                String key = db.child("mesRepas").push().getKey();
-                newRepas.setId(key);
-//                cuisinier.addToListOfRepas(newRepas);
-                Map<String, Object> repasMap = newRepas.toMapRepas();
-                db.child("mesRepas").child(key).updateChildren(repasMap);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
-        });
-    }
 }

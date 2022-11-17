@@ -12,7 +12,7 @@ import java.util.Map;
 public class Repas {
 
 	//Repas class variables
-	private Cuisinier cuisinier;
+	private String cuisinierEmail;
 	private String nomDuRepas;
 	private boolean statusPresense;
 	private String typeDeRepas;
@@ -28,8 +28,8 @@ public class Repas {
 	public Repas(){}
 
 	//initialization methode for Repas
-	public Repas(Cuisinier cuisinier, String description,String nomDuRepas, Boolean status, String typeDeRepas, String typeDeCuisine, String ingredients, String allergies, double prix) {
-		this.cuisinier = cuisinier;
+	public Repas(String description,String nomDuRepas, Boolean status, String typeDeRepas, String typeDeCuisine, String ingredients, String allergies, double prix) {
+		this.cuisinierEmail = cuisinierEmail;
 
 		this.nomDuRepas = nomDuRepas;
 		this.statusPresense = status;
@@ -46,7 +46,10 @@ public class Repas {
 	public void setNomDuRepas(String nomRepas) {nomDuRepas = nomRepas;}
 
 	//get email of a Cuisinier
-	public Cuisinier getCuisinierEmail() {return cuisinier;}
+	public String getCuisinierEmail() {return cuisinierEmail;}
+	public void setCuisinierEmail(String cuisinierEmail){
+		this.cuisinierEmail = cuisinierEmail;
+	}
 
 	//get the status of a meal (available for order or not)
 	public boolean getStatus() {return statusPresense;}

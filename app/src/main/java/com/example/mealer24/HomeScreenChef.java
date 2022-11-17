@@ -45,11 +45,7 @@ public class HomeScreenChef extends HomeScreen {
     }
 
 
-    public void showRepas(){
-        //so do I put this or do I put an onlisten to button mesRepas that opens a new activity??
 
-
-    }
     public void sendToRepasPage(View view){
 
         Intent intent = new Intent(this, RepasActivity.class);

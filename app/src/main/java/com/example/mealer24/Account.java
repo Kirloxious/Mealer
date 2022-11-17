@@ -23,10 +23,6 @@ import java.util.Map;
 
 public class Account{
 
-
-
-
-
 	private String email;
 	private String pwd;
 	private String nom;

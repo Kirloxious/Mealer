@@ -50,9 +50,10 @@ public class RepasActivity extends AppCompatActivity {
         buttonRemove=findViewById(R.id.deleteRepas_btn);
         buttonVoirLeMenuDuJour=findViewById(R.id.repasDuJour_btn);
 
-        db = Utils.getAccountDatabaseReference(Utils.CUISINIER_ROLE, userEmail);
-        //path for the cuisinier's repas
-        dbRepas = db.child("mesRepas");
+        //gets the path directly to all of the repas of a cuisinier
+        db = Utils.getAccountDatabaseReference(Utils.CUISINIER_ROLE, userEmail).child(Utils.DB_REPAS_PATH);
+
+
 
         lesRepas = new LinkedList<Repas>();
 
@@ -72,7 +73,7 @@ public class RepasActivity extends AppCompatActivity {
 
 
     private void displayRepas(){
-        dbRepas.addListenerForSingleValueEvent(new ValueEventListener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 lesRepas.clear();
@@ -95,9 +96,6 @@ public class RepasActivity extends AppCompatActivity {
     }
 
     //show popup dialog box
-
-
-    //update repas
 
 
 
