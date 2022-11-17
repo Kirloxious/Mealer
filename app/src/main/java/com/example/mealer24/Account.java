@@ -76,6 +76,7 @@ public class Account{
 	public boolean getLogInStatus() {
 		return logInStatus;
 	}
+	public void setLogInStatus(boolean status){this.logInStatus = status;}
 	public void logOut() {
 		logInStatus = false;
 	}
