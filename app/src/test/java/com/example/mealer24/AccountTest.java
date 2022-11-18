@@ -9,8 +9,10 @@ import org.junit.Test;
 
 public class AccountTest {
 
+    //account variable to test
     Account account = new Account("email@email.com", "pass", "nom", "nomFamille", "address");
 
+    //testing the variable "email" for the account class
     @Test
     public void testGetSetEmail() {
         account.setEmail("anotherEmail@gmail.com");
@@ -18,6 +20,7 @@ public class AccountTest {
         assertNotEquals("email@email.com", account.getEmail());
     }
 
+    //testing the variable "pwd"(password) for the account class
     @Test
     public void testGetSetPwd() {
         account.setPwd("differentPass");
@@ -26,6 +29,7 @@ public class AccountTest {
 
     }
 
+    //testing the variable "nom" for the account class
     @Test
     public void testGetSetNom() {
         account.setNom("Alex");
@@ -33,6 +37,7 @@ public class AccountTest {
         assertNotEquals("nom", account.getNom());
     }
 
+    //testing the variable "nomFamille" for the account class
     @Test
     public void testGetSetNomFamille() {
         account.setNomDeFamille("Ringuette");
@@ -40,6 +45,7 @@ public class AccountTest {
         assertNotEquals("nomFamille", account.getNomFamille());
     }
 
+    //testing the variable "address" for the account class
     @Test
     public void testGetSetAddress() {
         account.setAddress("differentAddress");
@@ -48,6 +54,7 @@ public class AccountTest {
 
     }
 
+    //testing the variable "logInStatus" for the account class
     @Test
     public void testGetSetLogInStatus() {
         Assert.assertFalse(account.getLogInStatus());
@@ -55,5 +62,10 @@ public class AccountTest {
         Assert.assertTrue(account.getLogInStatus());
     }
 
+    //testing if the cook can no longer long in when they are banned
+    @Test
+    public void testBanLogInCook() {
+    //to implement
+    }
 
 }
