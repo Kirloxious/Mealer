@@ -50,6 +50,7 @@ public class RepasActivity extends AppCompatActivity {
         buttonRemove=findViewById(R.id.deleteRepas_btn);
         buttonVoirLeMenuDuJour=findViewById(R.id.repasDuJour_btn);
 
+
         //gets the path directly to all of the repas of a cuisinier
         db = Utils.getAccountDatabaseReference(Utils.CUISINIER_ROLE, userEmail).child(Utils.DB_REPAS_PATH);
 
@@ -60,6 +61,7 @@ public class RepasActivity extends AppCompatActivity {
 
         buttonAdd.setOnClickListener(this::sendToAddRepasPage);
         buttonVoirLeMenuDuJour.setOnClickListener(this::sendToAddRepasotd);
+
     }
 
     @Override

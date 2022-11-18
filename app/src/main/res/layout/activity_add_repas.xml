@@ -112,7 +112,7 @@
             android:digits="1234567890."
             android:ems="10"
             android:hint="Price ($)"
-            android:inputType="numberDecimal"
+            android:inputType="number|numberDecimal"
             android:minHeight="48dp" />
 
         <Space
