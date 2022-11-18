@@ -29,7 +29,6 @@ public class RepasActivity extends AppCompatActivity {
     private Button buttonVoirLeMenuDuJour;
     private Button buttonRemove;
     private Button buttonAdd;
-    private Button buttonAddRepasOTD;
     private DatabaseReference db;
     private DatabaseReference dbRepas;
     private LinkedList<Repas> lesRepas;
@@ -50,7 +49,7 @@ public class RepasActivity extends AppCompatActivity {
         buttonAdd=findViewById(R.id.addRepas_btn);
         buttonRemove=findViewById(R.id.deleteRepas_btn);
         buttonVoirLeMenuDuJour=findViewById(R.id.repasDuJour_btn);
-        buttonAddRepasOTD = findViewById(R.id.buttonAddToRepasOTD);
+
 
         //gets the path directly to all of the repas of a cuisinier
         db = Utils.getAccountDatabaseReference(Utils.CUISINIER_ROLE, userEmail).child(Utils.DB_REPAS_PATH);
@@ -62,7 +61,7 @@ public class RepasActivity extends AppCompatActivity {
 
         buttonAdd.setOnClickListener(this::sendToAddRepasPage);
         buttonVoirLeMenuDuJour.setOnClickListener(this::sendToAddRepasotd);
-        buttonAddRepasOTD.setOnClickListener(this::sendToAddRepasToOtd);
+
     }
 
     @Override
@@ -104,9 +103,7 @@ public class RepasActivity extends AppCompatActivity {
 
     //add repas to repas du jour
 
-    public void sendToAddRepasToOtd(View view){
-        
-    }
+
     //Method to redirect user to add repas page.
     public void sendToAddRepasPage(View view){
 

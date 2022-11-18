@@ -27,7 +27,7 @@ public class RepasList extends ArrayAdapter<Repas> {
         @SuppressLint("ViewHolder") View listViewItem = inflater.inflate(R.layout.layout_repas_list, null, true);
 
         TextView textViewName = (TextView) listViewItem.findViewById(R.id.textViewName);
-        TextView textViewDescription = (TextView) listViewItem.findViewById(R.id.textViewDescription);
+        TextView textViewDescription = (TextView) listViewItem.findViewById(R.id.textViewPrice);
 
         Repas r = repas.get(position);
         textViewName.setText(r.getNomDuRepas());
