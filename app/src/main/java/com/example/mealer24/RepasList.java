@@ -10,6 +10,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
+/**
+ * This class allows us to customize the list view of repas
+ * see layout_repas_list.xml to customize the layout
+ */
 public class RepasList extends ArrayAdapter<Repas> {
 
     private Activity context;

@@ -82,7 +82,7 @@ public class RepasActivity extends AppCompatActivity {
                     Repas repas = dataSnapshot.getValue(Repas.class);
                     lesRepas.add(repas);
                 }
-                //creates adapter
+                //creates adapter for our custom list view layout
                 RepasList repasAdapter = new RepasList(RepasActivity.this, lesRepas);
 
                 //attach the adapter to the repas list view
