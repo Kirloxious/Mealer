@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.view.View;
-
+import android.widget.Toast;
 
 
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +39,8 @@ public class RepasActivity extends AppCompatActivity {
     private ArrayAdapter<Repas> adapter;
 
     private String userEmail;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +72,7 @@ public class RepasActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Repas repas = lesRepas.get(i);
-                showUpdateDeleteDialog(String.valueOf(repas.getId()), repas.getNomDuRepas());
+                showRemoveDialog(String.valueOf(repas.getId()), repas.getNomDuRepas());
                 return true;
             }
         });
@@ -95,6 +97,7 @@ public class RepasActivity extends AppCompatActivity {
 
                     Repas repas = dataSnapshot.getValue(Repas.class);
                     lesRepas.add(repas);
+
                 }
                 //creates adapter for our custom list view layout
                 RepasList repasAdapter = new RepasList(RepasActivity.this, lesRepas);
@@ -110,7 +113,7 @@ public class RepasActivity extends AppCompatActivity {
     }
 
     //show popup dialog box
-    private void showUpdateDeleteDialog(final String repasId, String repasName) {
+    private void showRemoveDialog(final String repasId, String repasName) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -127,7 +130,7 @@ public class RepasActivity extends AppCompatActivity {
         buttonRemove.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                //removeRepas(repasId) //to implement
+                removeRepas(repasId);
                 b.dismiss();
             }
         });
@@ -142,6 +145,30 @@ public class RepasActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private void removeRepas(String id){
+        DatabaseReference repasToRemove = db.child(id);
+        repasToRemove.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Repas repas = snapshot.getValue(Repas.class);
+                if(!repas.isRepasDujour()){
+                    repasToRemove.removeValue();
+                    Toast.makeText(RepasActivity.this, "Repas removed.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(RepasActivity.this, "Cannot remove, Repas is a repas du jour.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+        
+    }
+
+    //add repas to repas du jour
 
 
     //Method to redirect user to add repas page.
