@@ -51,7 +51,7 @@ public class RepasActivityotd extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
                     //go through each repas and add to display list
                     Repas leRepas = dataSnapshot.getValue(Repas.class);
-                    if (leRepas.getStatus()){
+                    if (leRepas.isRepasDujour()){
                         lesRepasOtd.add(leRepas);
                     }
 

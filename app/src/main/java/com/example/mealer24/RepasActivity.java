@@ -53,7 +53,7 @@ public class RepasActivity extends AppCompatActivity {
         mesRepas_in_text=findViewById(R.id.texteMesRepas);
         listeDeRepas=findViewById(R.id.listeDeRepas);
         buttonAdd=findViewById(R.id.addRepas_btn);
-        buttonRemove=findViewById(R.id.deleteRepas_btn);
+
         buttonVoirLeMenuDuJour=findViewById(R.id.repasDuJour_btn);
 
 
