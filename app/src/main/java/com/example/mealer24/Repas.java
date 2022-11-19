@@ -24,6 +24,8 @@ public class Repas {
 
 	private String id;
 
+	private boolean isRepasDujour;
+
 	//No arg constructor for firebase use
 	public Repas(){}
 
@@ -40,6 +42,7 @@ public class Repas {
 		this.prix =prix;
 		this.description =description;
 
+		this.isRepasDujour = false;
 
 	}
 
@@ -80,6 +83,13 @@ public class Repas {
 	public double getPrix() {return prix;}
 	public void setPrix(float prix) {this.prix = prix;}
 
+	public boolean isRepasDujour() {
+		return isRepasDujour;
+	}
+
+	public void setRepasDujour(boolean repasDujour) {
+		isRepasDujour = repasDujour;
+	}
 
 	public String getId() {
 		return id;
