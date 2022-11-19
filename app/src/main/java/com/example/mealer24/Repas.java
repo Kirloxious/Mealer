@@ -1,7 +1,5 @@
 package com.example.mealer24;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,13 +24,13 @@ public class Repas {
 
 	private String id;
 
-	private boolean isRepasDujour;
+	private Boolean isRepasDuJour = false;
 
 	//No arg constructor for firebase use
 	public Repas(){}
 
 	//initialization methode for Repas
-	public Repas(String description,String nomDuRepas, Boolean status, String typeDeRepas, String typeDeCuisine, String ingredients, String allergies, double prix) {
+	public Repas(String description,String nomDuRepas, Boolean status, String typeDeRepas, String typeDeCuisine, String ingredients, String allergies, double prix, boolean isRepasDuJour) {
 		this.cuisinierEmail = cuisinierEmail;
 
 		this.nomDuRepas = nomDuRepas;
@@ -44,8 +42,7 @@ public class Repas {
 		this.prix =prix;
 		this.description =description;
 
-		this.isRepasDujour = false;
-
+		this.isRepasDuJour = isRepasDuJour;
 	}
 
 	//get and set the name of a meal
@@ -85,12 +82,12 @@ public class Repas {
 	public double getPrix() {return prix;}
 	public void setPrix(float prix) {this.prix = prix;}
 
-	public boolean isRepasDujour() {
-		return isRepasDujour;
+	public Boolean isRepasDujour() {
+		return isRepasDuJour;
 	}
 
-	public void setRepasDujour(boolean repasDujour) {
-		isRepasDujour = repasDujour;
+	public void setRepasDujour(Boolean repasDujour) {
+		isRepasDuJour = repasDujour;
 	}
 
 	public String getId() {
@@ -110,14 +107,14 @@ public class Repas {
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("description", description);
 		result.put("nomDuRepas", nomDuRepas);
-		result.put("status", false);
+		result.put("status", statusPresense);
 		result.put("typeDeRepas", typeDeRepas);
 		result.put("typeDeCuisine", typeDeCuisine);
 		result.put("ingredients", ingredients);
 		result.put("allergies", allergies);
 		result.put("prix", prix);
 		result.put("id", id);
-
+		result.put("isRepasDuJour", isRepasDuJour);
 
 		return result;
 	}

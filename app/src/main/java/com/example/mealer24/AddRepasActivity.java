@@ -1,26 +1,24 @@
 package com.example.mealer24;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
-import android.text.TextWatcher;
-import android.view.View;
+import android.text.Spanned;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.text.Spanned;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Map;
-import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 
@@ -80,8 +78,7 @@ public class AddRepasActivity extends AppCompatActivity {
                 newRepas.setCuisinierEmail(cuisinier.getEmail());
                 //send the class to a map then update the database
                 //at the cuisnier's mesRepas path
-                Map<String, Object> repasMap = newRepas.toMapRepas();
-                db.child(Utils.DB_REPAS_PATH).child(key).updateChildren(repasMap);
+                db.child(Utils.DB_REPAS_PATH).child(key).updateChildren(newRepas.toMapRepas());
 
                 Toast.makeText(AddRepasActivity.this, "Meal added successfully.", Toast.LENGTH_SHORT).show();
                 sendToRepasPage(); //send back to the repas page after it's been added to database
@@ -109,7 +106,7 @@ public class AddRepasActivity extends AppCompatActivity {
         String repasPrice = priceRepas.getText().toString();
         double repasPriceDouble = Double.parseDouble(repasPrice); //convert price to double
 
-        return new Repas(repasDescription, repasName, true, repasType, repasCuisine, repasIngredients, repasAllergies, repasPriceDouble);
+        return new Repas(repasDescription, repasName, true, repasType, repasCuisine, repasIngredients, repasAllergies, repasPriceDouble, false);
 
     }
 

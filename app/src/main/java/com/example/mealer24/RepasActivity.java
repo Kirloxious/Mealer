@@ -1,31 +1,26 @@
 package com.example.mealer24;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.view.View;
-import android.widget.Toast;
-
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Map;
 
 public class RepasActivity extends AppCompatActivity {
     private TextView mesRepas_in_text;
@@ -72,7 +67,7 @@ public class RepasActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Repas repas = lesRepas.get(i);
-                showRemoveDialog(String.valueOf(repas.getId()), repas.getNomDuRepas());
+                showRemoveDialog(repas.getId(), repas.getNomDuRepas());
                 return true;
             }
         });
@@ -82,7 +77,6 @@ public class RepasActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         displayRepas();
     }
 
@@ -138,9 +132,7 @@ public class RepasActivity extends AppCompatActivity {
         buttonAddRepas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //insert AddToRepasDujour function here
-                //change the status of repas given
-                db.child(userEmail).child(repasId).child("status").setValue(true);
+                addRepasDuJour(repasId);
                 b.dismiss();
             }
         });
@@ -153,7 +145,7 @@ public class RepasActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Repas repas = snapshot.getValue(Repas.class);
-                if(!repas.isRepasDujour()){
+                if(repas.isRepasDujour()){
                     repasToRemove.removeValue();
                     Toast.makeText(RepasActivity.this, "Repas removed.", Toast.LENGTH_SHORT).show();
                 }
@@ -169,7 +161,23 @@ public class RepasActivity extends AppCompatActivity {
     }
 
     //add repas to repas du jour
+    private void addRepasDuJour(String id){
+        DatabaseReference repasToUpdate = db.child(id);
+        repasToUpdate.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Repas repas = snapshot.getValue(Repas.class);
+                repas.setRepasDujour(true);
+                repasToUpdate.updateChildren(repas.toMapRepas());
+                Toast.makeText(RepasActivity.this, "Repas added", Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
     //Method to redirect user to add repas page.
     public void sendToAddRepasPage(View view){
