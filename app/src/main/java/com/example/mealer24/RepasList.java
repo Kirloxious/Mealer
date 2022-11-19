@@ -42,24 +42,6 @@ public class RepasList extends ArrayAdapter<Repas> {
         textViewDescription.setText(r.getDescription());
         return listViewItem;
     }
-    public void deleteRepas(int position){
-        repas.remove(position);
-
-    }
-    public void toggleSelection(int position){
-        selectView(position, !selectedItem.get(position));
-    }
-    public void removeSelection(){
-        selectedItem = new SparseBooleanArray();
-        notifyDataSetChanged();
-    }
-    public void selectView(int position,boolean value){
-        if (value) {
-            selectedItem.put(position, value);
-        } else {
-            selectedItem.delete(position);
-        }
-    }
 
 
 }
