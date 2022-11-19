@@ -106,7 +106,7 @@ public class Cuisinier extends Account {
 	
 	//This updates the isBanned value in the database to true
 	public void banCuisinier() {
-		DatabaseReference db = Utils.getAccountDatabaseReference(Utils.DB_CUISINIER_PATH, this.getEmail());
+		DatabaseReference db = Utils.getAccountDatabaseReference("Cuisiniers", this.getEmail());
 		this.isBanned = true;
 		Map<String, Object> cusinierValues = this.toMapCuisinier();
 		db.updateChildren(cusinierValues);
@@ -114,7 +114,7 @@ public class Cuisinier extends Account {
 
 	//This updates the isBanned value in the database to false
 	public void unBanCusinier(){
-		DatabaseReference db = Utils.getAccountDatabaseReference(Utils.DB_CUISINIER_PATH, this.getEmail());
+		DatabaseReference db = Utils.getAccountDatabaseReference("Cuisiniers", this.getEmail());
 		this.isBanned = false;
 		Map<String, Object> cusinierValues = this.toMapCuisinier();
 		db.updateChildren(cusinierValues);
@@ -151,9 +151,6 @@ public class Cuisinier extends Account {
 		}
 	}
 
-	public void updateCuisinier(DatabaseReference db){
-
-	}
 
 
 
