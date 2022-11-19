@@ -139,6 +139,8 @@ public class RepasActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //insert AddToRepasDujour function here
+                //change the status of repas given
+                db.child(userEmail).child(repasId).child("status").setValue(true);
                 b.dismiss();
             }
         });
