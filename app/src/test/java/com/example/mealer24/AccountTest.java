@@ -3,13 +3,15 @@ package com.example.mealer24;
 import static org.junit.Assert.assertNotEquals;
 
 
+import android.media.Image;
+
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
 public class AccountTest {
 
-    //account variable to test
+    //general account variable to test
     Account account = new Account("email@email.com", "pass", "nom", "nomFamille", "address");
 
     //testing the variable "email" for the account class
@@ -60,12 +62,6 @@ public class AccountTest {
         Assert.assertFalse(account.getLogInStatus());
         account.setLogInStatus(true);
         Assert.assertTrue(account.getLogInStatus());
-    }
-
-    //testing if the cook can no longer long in when they are banned
-    @Test
-    public void testBanLogInCook() {
-    //to implement
     }
 
 }
