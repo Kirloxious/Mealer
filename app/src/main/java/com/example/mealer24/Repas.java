@@ -1,5 +1,7 @@
 package com.example.mealer24;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.HashMap;
 import java.util.Map;
 
