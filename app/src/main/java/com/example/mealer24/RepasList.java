@@ -35,10 +35,13 @@ public class RepasList extends ArrayAdapter<Repas> {
         @SuppressLint("ViewHolder") View listViewItem = inflater.inflate(R.layout.layout_repas_list, null, true);
 
         TextView textViewName = (TextView) listViewItem.findViewById(R.id.textViewName);
-        TextView textViewDescription = (TextView) listViewItem.findViewById(R.id.textViewPrice);
+        TextView textViewPrice = (TextView) listViewItem.findViewById(R.id.textViewPrice);
+        TextView textViewDescription = (TextView) listViewItem.findViewById(R.id.textViewDescription);
+
 
         Repas r = repas.get(position);
         textViewName.setText(r.getNomDuRepas());
+        textViewPrice.setText(Double.toString(r.getPrix())+"$");
         textViewDescription.setText(r.getDescription());
         return listViewItem;
     }
