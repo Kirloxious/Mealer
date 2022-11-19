@@ -80,7 +80,7 @@ public class Repas {
 
 	//get and set the price of a meal
 	public double getPrix() {return prix;}
-	public void setPrix(float prix) {this.prix = prix;}
+	public void setPrix(double prix) {this.prix = prix;}
 
 	public boolean getisRepasDujour() {
 		return isRepasDuJour;
