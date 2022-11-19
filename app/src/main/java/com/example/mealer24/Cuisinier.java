@@ -57,6 +57,13 @@ public class Cuisinier extends Account {
 		this.description = description;
 	}
 
+	//get and set for Cuisinier's description
+	public Image getVoidCheque() {
+		return voidCheque;
+	}
+	public void setVoidCheque(Image voidcheque) {this.voidCheque = voidcheque;}
+
+
 	//get and add to list of all the meals for a Cuisinier
 	public List<Repas> getListOfAllRepas() {
 		return mesRepas;
