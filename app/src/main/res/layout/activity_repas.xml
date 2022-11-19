@@ -63,12 +63,6 @@
                 android:layout_weight="1"
                 android:text="Liste de Repas du Jour" />
 
-            <Button
-                android:id="@+id/buttonAddToRepasOTD"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Ajouter à la liste de repas du jour" />
         </LinearLayout>
     </LinearLayout>
 

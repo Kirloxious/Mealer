@@ -98,7 +98,7 @@ public class Repas {
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("description", description);
 		result.put("nomDuRepas", nomDuRepas);
-		result.put("status", statusPresense);
+		result.put("status", false);
 		result.put("typeDeRepas", typeDeRepas);
 		result.put("typeDeCuisine", typeDeCuisine);
 		result.put("ingredients", ingredients);
