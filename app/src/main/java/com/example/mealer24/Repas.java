@@ -39,6 +39,8 @@ public class Repas {
 		this.allergies = allergies;
 		this.prix =prix;
 		this.description =description;
+
+
 	}
 
 	//get and set the name of a meal
@@ -103,6 +105,7 @@ public class Repas {
 		result.put("allergies", allergies);
 		result.put("prix", prix);
 		result.put("id", id);
+
 
 		return result;
 	}

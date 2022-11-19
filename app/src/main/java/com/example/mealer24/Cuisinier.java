@@ -144,9 +144,6 @@ public class Cuisinier extends Account {
 		}
 	}
 
-	public void updateCuisinier(DatabaseReference db){
-
-	}
 
 
 

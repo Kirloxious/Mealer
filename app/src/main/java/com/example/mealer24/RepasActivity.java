@@ -1,12 +1,16 @@
 package com.example.mealer24;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.view.View;
@@ -62,6 +66,15 @@ public class RepasActivity extends AppCompatActivity {
         buttonAdd.setOnClickListener(this::sendToAddRepasPage);
         buttonVoirLeMenuDuJour.setOnClickListener(this::sendToAddRepasotd);
 
+        listeDeRepas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Repas repas = lesRepas.get(i);
+                showUpdateDeleteDialog(String.valueOf(repas.getId()), repas.getNomDuRepas());
+                return true;
+            }
+        });
+
     }
 
     @Override
@@ -69,7 +82,6 @@ public class RepasActivity extends AppCompatActivity {
         super.onStart();
 
         displayRepas();
-
     }
 
 
@@ -98,8 +110,36 @@ public class RepasActivity extends AppCompatActivity {
     }
 
     //show popup dialog box
+    private void showUpdateDeleteDialog(final String repasId, String repasName) {
 
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.remove_dialog, null);
+        dialogBuilder.setView(dialogView);
 
+        final Button buttonAddRepas = (Button) dialogView.findViewById(R.id.buttonAddToRepasDuJour);
+        final Button buttonRemove = (Button) dialogView.findViewById(R.id.buttonRemove);
+
+        dialogBuilder.setTitle(repasName);
+        final AlertDialog b = dialogBuilder.create();
+        b.show();
+
+        buttonRemove.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                //removeRepas(repasId) //to implement
+                b.dismiss();
+            }
+        });
+
+        buttonAddRepas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //insert AddToRepasDujour function here
+                b.dismiss();
+            }
+        });
+    }
 
     //add repas to repas du jour
 

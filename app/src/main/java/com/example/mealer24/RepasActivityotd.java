@@ -37,4 +37,5 @@ public class RepasActivityotd extends AppCompatActivity {
         //db = Utils.getAccountDatabaseReference(Utils.CUISINIER_ROLE, userEmail).child(Utils.DB_REPAS_PATH);
 
     }
+
 }
