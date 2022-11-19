@@ -8,7 +8,7 @@ import org.junit.Assert;
 
 public class RepasTest extends TestCase {
 
-    Repas repas = new Repas("burrito desc.","burrito",true,"non-vegetarian","mexican","beans, chicken...","none",19);
+    Repas repas = new Repas("burrito desc.","burrito",true,"non-vegetarian","mexican","beans, chicken...","none",19, false);
 
     public void testGetSetNomDuRepas() {
         repas.setNomDuRepas("taco");

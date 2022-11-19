@@ -24,13 +24,13 @@ public class Repas {
 
 	private String id;
 
-	private Boolean isRepasDuJour = false;
+	private boolean isRepasDuJour;
 
 	//No arg constructor for firebase use
 	public Repas(){}
 
 	//initialization methode for Repas
-	public Repas(String description,String nomDuRepas, Boolean status, String typeDeRepas, String typeDeCuisine, String ingredients, String allergies, double prix, boolean isRepasDuJour) {
+	public Repas(String description,String nomDuRepas, boolean status, String typeDeRepas, String typeDeCuisine, String ingredients, String allergies, double prix,  boolean isRepasDuJour) {
 		this.cuisinierEmail = cuisinierEmail;
 
 		this.nomDuRepas = nomDuRepas;
@@ -82,11 +82,11 @@ public class Repas {
 	public double getPrix() {return prix;}
 	public void setPrix(float prix) {this.prix = prix;}
 
-	public Boolean isRepasDujour() {
+	public boolean getisRepasDujour() {
 		return isRepasDuJour;
 	}
 
-	public void setRepasDujour(Boolean repasDujour) {
+	public void setisRepasDujour(boolean repasDujour) {
 		isRepasDuJour = repasDujour;
 	}
 

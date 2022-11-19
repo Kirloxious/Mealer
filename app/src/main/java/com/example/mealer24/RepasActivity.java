@@ -125,6 +125,7 @@ public class RepasActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 removeRepas(repasId);
+                displayRepas();
                 b.dismiss();
             }
         });
@@ -145,13 +146,14 @@ public class RepasActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Repas repas = snapshot.getValue(Repas.class);
-                if(repas.isRepasDujour()){
+                if(!repas.getisRepasDujour()){
                     repasToRemove.removeValue();
                     Toast.makeText(RepasActivity.this, "Repas removed.", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(RepasActivity.this, "Cannot remove, Repas is a repas du jour.", Toast.LENGTH_SHORT).show();
                 }
+                displayRepas();
             }
 
             @Override
@@ -167,7 +169,7 @@ public class RepasActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Repas repas = snapshot.getValue(Repas.class);
-                repas.setRepasDujour(true);
+                repas.setisRepasDujour(true);
                 repasToUpdate.updateChildren(repas.toMapRepas());
                 Toast.makeText(RepasActivity.this, "Repas added", Toast.LENGTH_SHORT).show();
             }
