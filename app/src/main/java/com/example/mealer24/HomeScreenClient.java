@@ -2,9 +2,6 @@ package com.example.mealer24;
 
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ListView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * This is the home screen for a client account where
@@ -27,7 +24,7 @@ public class HomeScreenClient extends HomeScreen {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen_client);
 
-        best_chefs = findViewById(R.id.BestChefs);
+        best_chefs = findViewById(R.id.profile);
         order_status = findViewById(R.id.OrderRequests);
         previous_orders = findViewById(R.id.PrevMeals);
         order_meal = findViewById(R.id.OrderMeal);

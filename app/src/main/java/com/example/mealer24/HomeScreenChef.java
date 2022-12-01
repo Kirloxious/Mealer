@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * */
 public class HomeScreenChef extends HomeScreen {
     private Button prepare_meal;
-    private Button best_chefs;
+    private Button profile;
     private Button order_requests;
     private Button previous_meals;
 
@@ -31,7 +31,7 @@ public class HomeScreenChef extends HomeScreen {
         //gets the email of active user
         userEmail = getIntent().getStringExtra("email");
 
-        best_chefs = findViewById(R.id.BestChefs);
+        profile = findViewById(R.id.profile);
         order_requests = findViewById(R.id.OrderRequests);
         previous_meals = findViewById(R.id.PrevMeals);
         prepare_meal = findViewById(R.id.Meal);
@@ -41,14 +41,19 @@ public class HomeScreenChef extends HomeScreen {
         logoutBtn.setOnClickListener(view -> logoutUser());
 
         my_meals.setOnClickListener(this::sendToRepasPage);
-
+        profile.setOnClickListener(this::sendToProfilePage);
     }
 
 
 
     public void sendToRepasPage(View view){
-
         Intent intent = new Intent(this, RepasActivity.class);
+        intent.putExtra("email", userEmail);
+        startActivity(intent);
+    }
+
+    public void sendToProfilePage(View view) {
+        Intent intent = new Intent(this, ProfileActivity.class);
         intent.putExtra("email", userEmail);
         startActivity(intent);
     }

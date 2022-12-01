@@ -58,7 +58,7 @@
             android:textSize="16sp" />
 
         <Button
-            android:id="@+id/BestChefs"
+            android:id="@+id/profile"
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:text="Best Chefs this month"
