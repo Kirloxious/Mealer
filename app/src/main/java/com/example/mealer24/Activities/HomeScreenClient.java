@@ -5,6 +5,7 @@ import android.widget.Button;
 
 import com.example.mealer24.R;
 
+
 /**
  * This is the home screen for a client account where
  * they can see the best chef depending on their ratings,
@@ -26,7 +27,7 @@ public class HomeScreenClient extends HomeScreen {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen_client);
 
-        best_chefs = findViewById(R.id.BestChefs);
+        best_chefs = findViewById(R.id.profile);
         order_status = findViewById(R.id.OrderRequests);
         previous_orders = findViewById(R.id.PrevMeals);
         order_meal = findViewById(R.id.OrderMeal);
