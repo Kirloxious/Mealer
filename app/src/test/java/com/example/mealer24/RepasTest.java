@@ -2,6 +2,8 @@ package com.example.mealer24;
 
 import static org.junit.Assert.assertNotEquals;
 
+import com.example.mealer24.model.Repas;
+
 import junit.framework.TestCase;
 
 import org.junit.Assert;

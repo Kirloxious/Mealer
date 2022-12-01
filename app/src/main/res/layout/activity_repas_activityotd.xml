@@ -5,7 +5,7 @@
     android:id="@+id/buttonRemoveRepas"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RepasActivityotd">
+    tools:context=".Activities.RepasActivityotd">
 
     <LinearLayout
         android:layout_width="match_parent"

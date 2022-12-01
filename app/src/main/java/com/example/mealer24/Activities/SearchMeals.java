@@ -1,8 +1,10 @@
-package com.example.mealer24;
+package com.example.mealer24.Activities;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import com.example.mealer24.R;
 
 public class SearchMeals extends AppCompatActivity {
 

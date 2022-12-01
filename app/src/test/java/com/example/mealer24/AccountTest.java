@@ -3,10 +3,9 @@ package com.example.mealer24;
 import static org.junit.Assert.assertNotEquals;
 
 
-import android.media.Image;
+import com.example.mealer24.model.Account;
 
 import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.Test;
 
 public class AccountTest {

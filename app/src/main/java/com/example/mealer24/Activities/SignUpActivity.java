@@ -1,20 +1,30 @@
-package com.example.mealer24;
+package com.example.mealer24.Activities;
 
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.Editable;
-import android.util.Log;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.text.TextWatcher;
 
-import com.google.firebase.database.*;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.mealer24.R;
+import com.example.mealer24.model.Account;
+import com.example.mealer24.model.Client;
+import com.example.mealer24.model.CreditCard;
+import com.example.mealer24.model.Cuisinier;
+import com.example.mealer24.Utilities.UTF8Encoder;
+import com.example.mealer24.Utilities.Utils;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 
@@ -50,7 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(com.example.mealer24.R.layout.activity_sign_up);
 
 
         initialiseLayoutVariables();
@@ -265,21 +275,21 @@ public class SignUpActivity extends AppCompatActivity {
         role = getIntent().getStringExtra(Utils.INTENT_EXTRA_ROLE);
 
         //Activity layout
-        signUpEmail = findViewById(R.id.SignUpEmail);
-        signUpPassword = findViewById(R.id.SignUpPassword);
-        btnRegister = findViewById(R.id.RegisterButton);
-        signUpFirstName = findViewById(R.id.SignUpFirstName);
-        signUpLastName = findViewById(R.id.SignUpLastName);
-        signUpStreetAddress = findViewById(R.id.SignUpStreet);
-        signUpCity = findViewById(R.id.SignUpCity);
-        signUpPostal = findViewById(R.id.SignUpPostal);
-        signUpCreditCardInfotext = findViewById(R.id.SignUpCreditCardText);
-        signUpCardNumber = findViewById(R.id.SignUpCardNumber);
-        signUpExpirationDate = findViewById(R.id.SignUpExpiration);
-        signUpCVV = findViewById(R.id.SignUpCVV);
-        signUpVoidChequetext = findViewById(R.id.SignUpVoidCheckText);
-        signUpVoidCheque = findViewById(R.id.SignUpVoidCheque);
-        signUpUserDescriptiontext = findViewById(R.id.SignUpTextInformation);
+        signUpEmail = findViewById(com.example.mealer24.R.id.SignUpEmail);
+        signUpPassword = findViewById(com.example.mealer24.R.id.SignUpPassword);
+        btnRegister = findViewById(com.example.mealer24.R.id.RegisterButton);
+        signUpFirstName = findViewById(com.example.mealer24.R.id.SignUpFirstName);
+        signUpLastName = findViewById(com.example.mealer24.R.id.SignUpLastName);
+        signUpStreetAddress = findViewById(com.example.mealer24.R.id.SignUpStreet);
+        signUpCity = findViewById(com.example.mealer24.R.id.SignUpCity);
+        signUpPostal = findViewById(com.example.mealer24.R.id.SignUpPostal);
+        signUpCreditCardInfotext = findViewById(com.example.mealer24.R.id.SignUpCreditCardText);
+        signUpCardNumber = findViewById(com.example.mealer24.R.id.SignUpCardNumber);
+        signUpExpirationDate = findViewById(com.example.mealer24.R.id.SignUpExpiration);
+        signUpCVV = findViewById(com.example.mealer24.R.id.SignUpCVV);
+        signUpVoidChequetext = findViewById(com.example.mealer24.R.id.SignUpVoidCheckText);
+        signUpVoidCheque = findViewById(com.example.mealer24.R.id.SignUpVoidCheque);
+        signUpUserDescriptiontext = findViewById(com.example.mealer24.R.id.SignUpTextInformation);
         signUpUserDescription = findViewById(R.id.SignUpInformation);
     }
 

@@ -1,4 +1,4 @@
-package com.example.mealer24;
+package com.example.mealer24.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mealer24.model.Cuisinier;
+import com.example.mealer24.R;
+import com.example.mealer24.model.Repas;
+import com.example.mealer24.Utilities.Utils;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

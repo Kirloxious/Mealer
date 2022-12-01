@@ -1,11 +1,10 @@
-package com.example.mealer24;
+package com.example.mealer24.model;
 import android.media.Image;
-import android.widget.Toast;
 
+import com.example.mealer24.Utilities.Utils;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;

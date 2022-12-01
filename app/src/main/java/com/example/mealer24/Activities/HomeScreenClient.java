@@ -1,10 +1,9 @@
-package com.example.mealer24;
+package com.example.mealer24.Activities;
 
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ListView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.example.mealer24.R;
 
 /**
  * This is the home screen for a client account where

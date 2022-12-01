@@ -1,20 +1,20 @@
-package com.example.mealer24;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.mealer24.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.firebase.database.*;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
-import java.util.Map;
+import com.example.mealer24.model.Account;
+import com.example.mealer24.model.Admin;
+import com.example.mealer24.R;
+import com.example.mealer24.Utilities.UTF8Encoder;
+import com.example.mealer24.Utilities.Utils;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * This is the first screen for all users of the app.
@@ -31,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(com.example.mealer24.R.layout.activity_main);
 
-        welcome_text = findViewById(R.id.WelcomeText);
-        sign_in_as_cuisinier = findViewById(R.id.SignInAsCuisinier);
-        sign_in_as_client = findViewById(R.id.SignInAsClient);
+        welcome_text = findViewById(com.example.mealer24.R.id.WelcomeText);
+        sign_in_as_cuisinier = findViewById(com.example.mealer24.R.id.SignInAsCuisinier);
+        sign_in_as_client = findViewById(com.example.mealer24.R.id.SignInAsClient);
         sign_in_as_admin = findViewById(R.id.SignInAsAdmin);
 
         //sends the user to the desired account type to sign in

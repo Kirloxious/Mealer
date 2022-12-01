@@ -1,9 +1,7 @@
-package com.example.mealer24;
+package com.example.mealer24.Utilities;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.List;
 
 public class Utils {
 
@@ -59,6 +57,10 @@ public class Utils {
         return ref;
     }
 
+    public static String getEncodedEmailAsString(String email){
+        UTF8Encoder encodedEmail = new UTF8Encoder(email);
+        return encodedEmail.getEncodedString();
+    }
 
 
     private Utils() {}

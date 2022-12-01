@@ -1,4 +1,4 @@
-package com.example.mealer24;
+package com.example.mealer24.model;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

@@ -1,4 +1,4 @@
-package com.example.mealer24;
+package com.example.mealer24.Utilities;
 
 import java.nio.charset.StandardCharsets;
 
