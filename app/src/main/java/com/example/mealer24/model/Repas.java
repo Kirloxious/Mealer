@@ -30,8 +30,7 @@ public class Repas {
 	public Repas(){}
 
 	//initialization methode for Repas
-	public Repas(String description,String nomDuRepas, boolean status, String typeDeRepas, String typeDeCuisine, String ingredients, String allergies, double prix,  boolean isRepasDuJour) {
-		this.cuisinierEmail = cuisinierEmail;
+	public Repas(String description, String nomDuRepas, boolean status, String typeDeRepas, String typeDeCuisine, String ingredients, String allergies, double prix,  boolean isRepasDuJour) {
 
 		this.nomDuRepas = nomDuRepas;
 		this.statusPresense = status;
@@ -115,6 +114,7 @@ public class Repas {
 		result.put("prix", prix);
 		result.put("id", id);
 		result.put("isRepasDuJour", isRepasDuJour);
+		result.put("cuisinierEmail", cuisinierEmail);
 
 		return result;
 	}

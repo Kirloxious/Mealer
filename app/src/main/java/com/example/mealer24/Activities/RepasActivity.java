@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -16,9 +15,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mealer24.R;
+import com.example.mealer24.Utilities.Utils;
 import com.example.mealer24.model.Repas;
 import com.example.mealer24.model.RepasList;
-import com.example.mealer24.Utilities.Utils;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +32,6 @@ public class RepasActivity extends AppCompatActivity {
     private Button buttonRemove;
     private Button buttonAdd;
     private DatabaseReference db;
-    private DatabaseReference dbRepas;
     private LinkedList<Repas> lesRepas;
     private ArrayAdapter<Repas> adapter;
 
@@ -67,13 +65,10 @@ public class RepasActivity extends AppCompatActivity {
         buttonAdd.setOnClickListener(this::sendToAddRepasPage);
         buttonVoirLeMenuDuJour.setOnClickListener(this::sendToAddRepasotd);
 
-        listeDeRepas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Repas repas = lesRepas.get(i);
-                showRemoveDialog(repas.getId(), repas.getNomDuRepas());
-                return true;
-            }
+        listeDeRepas.setOnItemLongClickListener((adapterView, view, i, l) -> {
+            Repas repas = lesRepas.get(i);
+            showRemoveDialog(repas.getId(), repas.getNomDuRepas());
+            return true;
         });
 
     }

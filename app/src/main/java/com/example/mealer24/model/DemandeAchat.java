@@ -1,62 +1,87 @@
 package com.example.mealer24.model;
 
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Classe DemandeAchat
- * Garde les informations appartenant pour une demande d'achat
- * pre-condition: Les valeurs donnée sont valides
- * Elle garde les valeurs de statusAchat, quel client qui fait l'acht et de quel cuisinier,
- * l'heure ou l'achat est demandé et quel repas commander dans cette achat
   */
 public class DemandeAchat {
 
 	//DemandeAchat class variable
-	private String statusAchat;
-	private Client clientQuiAchete;
-	private Cuisinier cuisinierQuiVend;
-	private Date pickUpTime;
-	private Repas repasCommander;
+	private String mealId;
+	private String orderId;
+	private	String cookEmail;
+	private String clientEmail;
+	private String orderStatus;
+
+	private final String STATUS_ATTENTE = "attente";
+	private final String STATUS_APPROVED = "approved";
+	private final String STATUS_REJECTED = "rejected";
 
 	//initialization methode for DemandeAchat
-	public DemandeAchat(String statusAchat,Cuisinier cuisinierQuiVend, Client clientQuiAchete, Date pickUpTime, Repas repasCommander) {
-		this.statusAchat = statusAchat;
-		this.clientQuiAchete= clientQuiAchete;
-		this.cuisinierQuiVend = cuisinierQuiVend;
-		this.pickUpTime= pickUpTime;
-		this.repasCommander= repasCommander;
+	public DemandeAchat(String mealId, String cookEmail, String clientEmail) {
+		this.mealId = mealId;
+		this.clientEmail = clientEmail;
+		this.cookEmail = cookEmail;
 	}
 
-	//pour changer et get le status d'achat de repas entre: pending, completed, refused
-	public void changeStatusDeCommande(String status) {
-		statusAchat = status;
-	}
-	public String getStatusDeCommande() {
-		return statusAchat;
+
+// ************ SETTERS & GETTERS ************* //
+
+	public String getOrderId() {
+		return orderId;
 	}
 
-	//create a Plainte in the list of Plaintes of the cook (by client)
-	public void addPlainte(Plaintes unePlainte) {
-		cuisinierQuiVend.addCuisinierPlaintes(unePlainte);
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
 	}
 
-	//adds an evaluation to a cook
-	public void addEvaluation(int evaluationDonner) {
-		cuisinierQuiVend.updateEvaluation(evaluationDonner);
+	public String getMealId() {
+		return mealId;
 	}
 
-	//set and get a time and date for pick-up of an order
-	public void setPickUpTime(Date pickUpTime) {
-		this.pickUpTime = pickUpTime;
-	}
-	public Date getPickUpTime() {
-		return pickUpTime;
+	public void setMealId(String mealId) {
+		this.mealId = mealId;
 	}
 
-	//set and get the ordered meal
-	public Repas getRepasCommander() {
-		return repasCommander;
+	public String getCookEmail() {
+		return cookEmail;
 	}
-	public void setRepasCommander(Repas repasCommander) {
-		this.repasCommander = repasCommander;
+
+	public void setCookEmail(String cookEmail) {
+		this.cookEmail = cookEmail;
+	}
+
+	public String getClientEmail() {
+		return clientEmail;
+	}
+
+	public void setClientEmail(String clientEmail) {
+		this.clientEmail = clientEmail;
+	}
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+	public void setOrderStatus_ATTENTE(){
+		this.orderStatus = STATUS_ATTENTE;
+	}
+	public void setOrderStatus_APPROVED(){
+		this.orderStatus = STATUS_APPROVED;
+	}
+	public void setOrderStatus_REJECTED(){
+		this.orderStatus = STATUS_REJECTED;
+	}
+
+	public Map<String, Object> toMap(){
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("orderId", orderId);
+		result.put("mealId", mealId);
+		result.put("cookEmail", cookEmail);
+		result.put("clientEmail", clientEmail);
+		result.put("orderStatus", orderStatus);
+
+		return result;
 	}
 }
