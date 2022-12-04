@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.mealer24.R;
+import com.example.mealer24.Utilities.Utils;
 
 /**
  * This is the home screen for a chefs account where
@@ -62,6 +63,7 @@ public class HomeScreenChef extends HomeScreen {
     public void sendToOrderRequestPage(View view){
         Intent intent = new Intent(this, OrderRequestActivity.class);
         intent.putExtra("email", userEmail);
+        intent.putExtra(Utils.INTENT_EXTRA_ROLE, Utils.CUISINIER_ROLE);
         startActivity(intent);
     }
 

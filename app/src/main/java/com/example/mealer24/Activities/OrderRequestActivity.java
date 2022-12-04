@@ -31,6 +31,7 @@ public class OrderRequestActivity extends AppCompatActivity {
     private List<DemandeAchat> listOrdersRequest;
 
     private String currentUserEmail;
+    private boolean is_client;
 
 
     @Override
@@ -52,6 +53,7 @@ public class OrderRequestActivity extends AppCompatActivity {
             showUpdateStatusDialog(order.getOrderId());
             return true;
         });
+        is_client = getIntent().getStringExtra(Utils.INTENT_EXTRA_ROLE).equalsIgnoreCase(Utils.CLIENT_ROLE);
     }
 
     @Override
@@ -62,7 +64,8 @@ public class OrderRequestActivity extends AppCompatActivity {
 
 
     private void displayOrders(){
-        dbOrders.addListenerForSingleValueEvent(new ValueEventListener() {
+        System.out.println("sdkjfsldkjfslkjfdsdf");
+                dbOrders.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listOrdersRequest.clear();
@@ -71,10 +74,14 @@ public class OrderRequestActivity extends AppCompatActivity {
                     DemandeAchat order = dataSnapshot.getValue(DemandeAchat.class);
                     assert order != null;
                     //only add to view if order belong to the cook
-                    if(order.getCookEmail().equals(currentUserEmail)){
+                    System.out.println("sdkjfsldkjfslkjfdsdf" + order.getCookEmail() + "   " + order.getClientEmail());
+                    if(!is_client && order.getCookEmail().equals(currentUserEmail)){
                         listOrdersRequest.add(order);
                     }
 
+                    if(is_client && order.getClientEmail().equals(currentUserEmail)) {
+                        listOrdersRequest.add(order);
+                    }
                 }
                 //creates adapter for our custom list view layout
                 OrderLayout orderLayoutAdapter = new OrderLayout(OrderRequestActivity.this, listOrdersRequest);
@@ -91,6 +98,7 @@ public class OrderRequestActivity extends AppCompatActivity {
 
     //pop up with change status of order button
     private void showUpdateStatusDialog(final String orderId) {
+        if(is_client) return;
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -122,6 +130,7 @@ public class OrderRequestActivity extends AppCompatActivity {
     }
     //update status of order
     private void updateStatus(String id, String updatedStatus){
+        if(is_client) return;
         DatabaseReference orderRef = dbOrders.child(id);
         orderRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

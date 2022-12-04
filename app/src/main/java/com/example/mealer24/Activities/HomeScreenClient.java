@@ -12,6 +12,7 @@ import android.widget.SearchView;
 import androidx.annotation.NonNull;
 
 import com.example.mealer24.R;
+import com.example.mealer24.Utilities.Utils;
 import com.example.mealer24.model.Cuisinier;
 import com.example.mealer24.model.Repas;
 import com.google.firebase.database.DataSnapshot;
@@ -57,6 +58,9 @@ public class HomeScreenClient extends HomeScreen {
         order_meal = findViewById(R.id.OrderMeal);
         order_meal.setOnClickListener(this::sendToSearchMealsPage);
 
+        my_orders = findViewById(R.id.MyMeals);
+        my_orders.setOnClickListener(this::sendToOrderRequestPage);
+
         logoutBtn = findViewById(R.id.logoutBtn);
         logoutBtn.setOnClickListener(view -> logoutUser());
 
@@ -66,6 +70,13 @@ public class HomeScreenClient extends HomeScreen {
         cuisinierDatabase = FirebaseDatabase.getInstance().getReference("Users").child("Cuisiniers");
         putSetAllCuisinierInfo();
 
+    }
+
+    public void sendToOrderRequestPage(View view) {
+        Intent intent = new Intent(this, OrderRequestActivity.class);
+        intent.putExtra(Utils.INTENT_EXTRA_ROLE, Utils.CLIENT_ROLE);
+        intent.putExtra("email", userEmail);
+        startActivity(intent);
     }
 
     public void sendToSearchMealsPage(View view){
