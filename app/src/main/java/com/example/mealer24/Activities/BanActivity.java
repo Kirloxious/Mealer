@@ -1,9 +1,11 @@
 package com.example.mealer24.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,24 +36,31 @@ public class BanActivity extends AppCompatActivity {
     }
 
     private void banAndDismiss(View view) {
-        String cuisinier_username = cuisinier_id.getText().toString();
+        String cuisinier_username = cuisinier_id.getText().toString().split(",")[0];
+        String cuisinier_duration = cuisinier_id.getText().toString().split(",")[1];
         String complaint_number = complaint_id.getText().toString();
 
 
         if(!cuisinier_username.isEmpty()) {
-            DatabaseReference userDatabaseRef = Utils.getAccountDatabaseReference("Cuisiniers", cuisinier_username);
-            userDatabaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    Cuisinier user_acc = snapshot.getValue(Cuisinier.class);
-                    Admin.suspendIndef(user_acc);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
+            DatabaseReference userDatabaseRef = Utils.getAccountDatabaseReference(Utils.CUISINIER_ROLE, cuisinier_username);
+            userDatabaseRef.child("statusOfCook").setValue(cuisinier_duration);
+            Intent intent = new Intent(this, HomeScreenAdmin.class);
+            startActivity(intent);
+//            userDatabaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    Cuisinier user_acc = snapshot.getValue(Cuisinier.class);
+//                    Admin.suspendIndef(user_acc);
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//
+//                }
+//            });
+        }
+        else {
+            Toast.makeText(this, "No cuisinier with that username", Toast.LENGTH_SHORT).show();
         }
 
         // dismiss complaint number

@@ -15,7 +15,12 @@ public class BanScreen extends AppCompatActivity {
         setContentView(R.layout.activity_ban_screen);
 
         TextView view = findViewById(R.id.banMessage);
-        String ban_message = "You have been banned " + getIntent().getStringExtra("banMessage");
-        view.setText(ban_message);
+        String ban_message = getIntent().getStringExtra("banMessage");
+        if (ban_message.equals("permanent")) {
+            view.setText("you have been banned permanently");
+        }
+        else {
+            view.setText("you have been banned until " + ban_message);
+        }
     }
 }
