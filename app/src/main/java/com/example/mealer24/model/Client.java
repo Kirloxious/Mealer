@@ -1,4 +1,7 @@
 package com.example.mealer24.model;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.LinkedList;
 
 /**
@@ -10,6 +13,10 @@ public class Client extends Account {
 	// Client's class variables
 	private CreditCard creditCardInfo;
 	private LinkedList<DemandeAchat>tousRepas= new LinkedList<DemandeAchat>();
+	private Cuisinier cuisinier;
+	private Client client;
+	private String description;
+	private String plainteId;
 
 	//Empty constructor
 	public Client(){}
@@ -37,6 +44,26 @@ public class Client extends Account {
 	//making a purchase/adding a meal to their list of purchases
 	public void madeAPurchase(DemandeAchat purchase) {
 		tousRepas.add(purchase);
+	}
+
+	public void deposePlainte(Account cuisinier, Account client, String description){
+		this.cuisinier = (Cuisinier) cuisinier;
+		this.client = (Client) client;
+		this.description = description;
+		Plaintes plainte = new Plaintes(cuisinier,client,description);
+		addPlaintToDatabase();
+	}
+
+	//adds the plaint to the database
+	public void addPlaintToDatabase(){
+		//Database
+		DatabaseReference cuisinierDatabase = FirebaseDatabase.getInstance().getReference("Plaintes");
+		//create account object and add account to Clients database
+		String id = cuisinierDatabase.push().getKey();
+		Plaintes plaintes = new Plaintes(this.cuisinier, this.client, this.description);
+		plaintes.setId(id);
+		//Creates a nested node in Clients database with all of the object info
+		cuisinierDatabase.child(id).setValue(plaintes);
 	}
 
 	
