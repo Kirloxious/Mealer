@@ -117,8 +117,8 @@ public class SearchMealsActivity extends AppCompatActivity {
 
 
     //Creates an order and sends it to database
+    //called from the button in the dialog box
     private void placeOrder(Repas meal){
-
         String id = dbOrders.push().getKey();
         DemandeAchat order = new DemandeAchat(meal.getId(), meal.getCuisinierEmail(), userEmail);
         order.setOrderId(id);

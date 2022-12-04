@@ -11,6 +11,10 @@ import com.example.mealer24.R;
 
 import java.util.List;
 
+/**
+ * Layout for the an order to be applied to a listview using this adapter
+ * see layout_order_list.xml to customize the layout
+ */
 public class OrderList extends ArrayAdapter<DemandeAchat> {
 
     private Activity context;
@@ -33,6 +37,8 @@ public class OrderList extends ArrayAdapter<DemandeAchat> {
 
         //get the order at the given position in the listview
         DemandeAchat order = orderList.get(position);
+        //set the text view with info from the order
+
 
         return listViewItem;
     }

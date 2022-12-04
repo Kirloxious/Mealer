@@ -1,24 +1,7 @@
 package com.example.mealer24.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.os.Bundle;
-import android.util.SparseBooleanArray;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
-
-import java.util.List;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.os.Bundle;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,10 +52,9 @@ public class MealLayout extends ArrayAdapter<CuisinierEtRepasInfo> {
         TextView textViewCookAddress = (TextView) listViewItem.findViewById(R.id.cuisinierAddressId);
         TextView textViewCuisinierDescription = (TextView) listViewItem.findViewById(R.id.cuisinerDescriptionId);
 
-        /**
+        /*
          * Set the info for each Text view for one item of datatype CuisinierEtRepasInfo
          *
-
          */
         CuisinierEtRepasInfo cri = lesInfosMeals.get(position);
         //okay here we go x 10

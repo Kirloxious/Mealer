@@ -24,6 +24,7 @@ public class DemandeAchat {
 		this.mealId = mealId;
 		this.clientEmail = clientEmail;
 		this.cookEmail = cookEmail;
+		this.orderStatus = STATUS_ATTENTE;
 	}
 
 
@@ -64,6 +65,7 @@ public class DemandeAchat {
 	public String getOrderStatus() {
 		return orderStatus;
 	}
+
 	public void setOrderStatus_ATTENTE(){
 		this.orderStatus = STATUS_ATTENTE;
 	}
