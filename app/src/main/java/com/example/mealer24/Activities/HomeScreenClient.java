@@ -53,8 +53,10 @@ public class HomeScreenClient extends HomeScreen {
         order_status = findViewById(R.id.OrderRequests);
         order_status.setOnClickListener(this::sendToViewOrdersPage);
         previous_orders = findViewById(R.id.PrevMeals);
+
         order_meal = findViewById(R.id.OrderMeal);
         order_meal.setOnClickListener(this::sendToSearchMealsPage);
+
         logoutBtn = findViewById(R.id.logoutBtn);
         logoutBtn.setOnClickListener(view -> logoutUser());
 

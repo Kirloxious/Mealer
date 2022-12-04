@@ -40,6 +40,7 @@ public class HomeScreenChef extends HomeScreen {
         logoutBtn = findViewById(R.id.logoutBtn);
         logoutBtn.setOnClickListener(view -> logoutUser());
 
+        order_requests.setOnClickListener(this::sendToOrderRequestPage);
         my_meals.setOnClickListener(this::sendToRepasPage);
         profile.setOnClickListener(this::sendToProfilePage);
     }
@@ -54,6 +55,12 @@ public class HomeScreenChef extends HomeScreen {
 
     public void sendToProfilePage(View view) {
         Intent intent = new Intent(this, ProfileActivity.class);
+        intent.putExtra("email", userEmail);
+        startActivity(intent);
+    }
+
+    public void sendToOrderRequestPage(View view){
+        Intent intent = new Intent(this, OrderRequestActivity.class);
         intent.putExtra("email", userEmail);
         startActivity(intent);
     }

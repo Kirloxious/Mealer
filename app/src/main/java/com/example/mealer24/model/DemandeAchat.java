@@ -15,9 +15,12 @@ public class DemandeAchat {
 	private String clientEmail;
 	private String orderStatus;
 
-	private final String STATUS_ATTENTE = "attente";
-	private final String STATUS_APPROVED = "approved";
-	private final String STATUS_REJECTED = "rejected";
+	public final static String STATUS_ATTENTE = "Attente";
+	public final static String STATUS_APPROVED = "Approved";
+	public final static String STATUS_REJECTED = "Rejected";
+
+	//no arg constructor for firebase
+	public DemandeAchat(){}
 
 	//initialization methode for DemandeAchat
 	public DemandeAchat(String mealId, String cookEmail, String clientEmail) {
@@ -66,15 +69,10 @@ public class DemandeAchat {
 		return orderStatus;
 	}
 
-	public void setOrderStatus_ATTENTE(){
-		this.orderStatus = STATUS_ATTENTE;
+	public void setOrderStatus(String status){
+		this.orderStatus = status;
 	}
-	public void setOrderStatus_APPROVED(){
-		this.orderStatus = STATUS_APPROVED;
-	}
-	public void setOrderStatus_REJECTED(){
-		this.orderStatus = STATUS_REJECTED;
-	}
+
 
 	public Map<String, Object> toMap(){
 		HashMap<String, Object> result = new HashMap<>();

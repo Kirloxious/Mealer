@@ -128,6 +128,7 @@ public class Cuisinier extends Account {
 		toutAchat.add(uneDemande);
 	
 	}
+
 	public List<DemandeAchat> getListeDeDemande(){
 		return toutAchat;
 		//make it so that it returns only one
@@ -159,7 +160,6 @@ public class Cuisinier extends Account {
 		Map<String, Object> result = this.toMap();
 		result.put("isBanned", isBanned);
 		result.put("description", description);
-
 
 
 		return result;
