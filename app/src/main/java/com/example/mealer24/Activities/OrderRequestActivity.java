@@ -64,8 +64,7 @@ public class OrderRequestActivity extends AppCompatActivity {
 
 
     private void displayOrders(){
-        System.out.println("sdkjfsldkjfslkjfdsdf");
-                dbOrders.addListenerForSingleValueEvent(new ValueEventListener() {
+        dbOrders.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listOrdersRequest.clear();
@@ -74,7 +73,6 @@ public class OrderRequestActivity extends AppCompatActivity {
                     DemandeAchat order = dataSnapshot.getValue(DemandeAchat.class);
                     assert order != null;
                     //only add to view if order belong to the cook
-                    System.out.println("sdkjfsldkjfslkjfdsdf" + order.getCookEmail() + "   " + order.getClientEmail());
                     if(!is_client && order.getCookEmail().equals(currentUserEmail)){
                         listOrdersRequest.add(order);
                     }
