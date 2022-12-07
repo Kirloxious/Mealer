@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -34,6 +36,7 @@ import java.util.List;
 public class SearchMealsActivity extends AppCompatActivity {
 
     private ListView listViewOfMeals;
+    private SearchView sv;
     private List<Repas> meals;
     private DatabaseReference dbOrders;
     private DatabaseReference dbCook;
@@ -50,7 +53,7 @@ public class SearchMealsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_meals);
 
         userEmail = getIntent().getStringExtra("email");
-
+        sv = findViewById(R.id.searchBarId);
         //path to all active orders
         dbOrders = FirebaseDatabase.getInstance().getReference(Utils.getPathFrom(Utils.DB_ORDERS_PATH));
 
@@ -65,7 +68,43 @@ public class SearchMealsActivity extends AppCompatActivity {
             showPlaceOrderDialog(repas);
             return true;
         });
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                dbCook.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        meals.clear();
+                        for (DataSnapshot dataSnapshot: snapshot.getChildren()){
 
+                            Repas repas = dataSnapshot.getValue(Repas.class);
+                            if(repas.getNomDuRepas().equalsIgnoreCase(query) || repas.getNomDuRepas().startsWith(query)) {
+                                meals.add(repas);
+                            }
+                        }
+                        //creates adapter for our custom list view layout
+                        ArrayAdapter<Repas> repasAdapter = new RepasList(SearchMealsActivity.this, meals);
+
+                        //attach the adapter to the repas list view
+                        listViewOfMeals.setAdapter(repasAdapter);
+
+                        if(repasAdapter.isEmpty()) {
+                            displayRepas();
+                            Toast.makeText(SearchMealsActivity.this, "did not find any meal with that name", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {}
+                });
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
     }
 
     @Override
