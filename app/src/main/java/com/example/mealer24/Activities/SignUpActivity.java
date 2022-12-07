@@ -26,8 +26,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
-
+/**
+ * This is the sign up screen for a user to create an account
+ * */
 
 public class SignUpActivity extends AppCompatActivity {
     private String TAG = "SignUpActivity";

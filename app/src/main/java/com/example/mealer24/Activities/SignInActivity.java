@@ -20,6 +20,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * This is the sign in screen for a user to log into their account
+ * and sending them to the appropriate account home page depending on the
+ * type of account they chose (cuisinier, client, admin)
+ * */
+
 public class SignInActivity extends AppCompatActivity {
     private TextView sign_in_text;
     private EditText sign_in_email;

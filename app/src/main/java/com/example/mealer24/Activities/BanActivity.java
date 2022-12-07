@@ -18,7 +18,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-
+/**
+ * This is the screen for a admin account to ban a cook
+ * based on their judgement of the plainte of the cook
+ * */
 public class BanActivity extends AppCompatActivity {
     private EditText cuisinier_id;
     private EditText complaint_id;

@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.mealer24.R;
+import com.example.mealer24.model.CuisinierEtRepasInfo;
 
 import java.util.List;
 

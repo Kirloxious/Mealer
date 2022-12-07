@@ -16,8 +16,6 @@ import java.util.Map;
  * le cuisinier a aussi une liste de plaintes que les clients ont portés sur lui
  */
 
- // if cuisinier permanently suspended, make sure can't login
-
 public class Cuisinier extends Account {
 
 	//Cuisinier class variables

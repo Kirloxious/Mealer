@@ -24,7 +24,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+/**
+* This is the screen for a cuisinier account where
+* they can make changes to the status of a repas to remove it
+* from the "list" of repas du jour and see all their current list of repas du jour.
+**/
 
 public class AddRepasActivity extends AppCompatActivity {
     private DatabaseReference db;
@@ -51,8 +55,6 @@ public class AddRepasActivity extends AppCompatActivity {
         allergies = findViewById(R.id.allergiesTextMultiLine);
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +69,8 @@ public class AddRepasActivity extends AppCompatActivity {
         addingRepasButton.setOnClickListener(view -> {addRepas();});
 
     }
+
+    //adds a new repas (that will be created in the process) to the list of repas of the cuisinier
     private void addRepas(){
 
         db.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -93,6 +97,7 @@ public class AddRepasActivity extends AppCompatActivity {
         });
     }
 
+    //reads the input fields of the cook and creates a repas object
     public Repas createRepas(){
         //name of repas
         String repasName = nameRepas.getText().toString();
@@ -114,13 +119,14 @@ public class AddRepasActivity extends AppCompatActivity {
 
     }
 
-
+    //send the client user towards the repas page
     public void sendToRepasPage(){
         Intent intent = new Intent(this, RepasActivity.class);
         intent.putExtra("email", userEmail);
         startActivity(intent);
     }
 
+    //makes sure the price is in the correct "format"
     public class DecimalDigitsInputFilter implements InputFilter
     {
         Pattern pattern;

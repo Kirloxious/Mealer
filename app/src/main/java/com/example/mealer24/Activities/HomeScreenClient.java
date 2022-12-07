@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import com.example.mealer24.R;
 import com.example.mealer24.Utilities.Utils;
 import com.example.mealer24.model.Cuisinier;
+import com.example.mealer24.model.CuisinierEtRepasInfo;
 import com.example.mealer24.model.Repas;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -72,6 +73,10 @@ public class HomeScreenClient extends HomeScreen {
 
     }
 
+    /**
+     * Following 3 methods send the client user towards the requested page based
+     * on the page the user selected (order request page, meal searching page, view order page).
+     * */
     public void sendToOrderRequestPage(View view) {
         Intent intent = new Intent(this, OrderRequestActivity.class);
         intent.putExtra(Utils.INTENT_EXTRA_ROLE, Utils.CLIENT_ROLE);
@@ -91,6 +96,7 @@ public class HomeScreenClient extends HomeScreen {
         startActivity(intent);
     }
 
+    //method to search the database for all meals corresponding relatively to the user's input into the search bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.mealmenu,menu);
@@ -130,6 +136,7 @@ public class HomeScreenClient extends HomeScreen {
         return super.onCreateOptionsMenu(menu);
     }
 
+    //gets all the cooks that are not banned (working) and their info from the database
     public void putSetAllCuisinierInfo() {
         cuisinierDatabase.addValueEventListener(new ValueEventListener() {
             @Override

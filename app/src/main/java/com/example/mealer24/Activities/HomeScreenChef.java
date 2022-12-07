@@ -46,7 +46,10 @@ public class HomeScreenChef extends HomeScreen {
         profile.setOnClickListener(this::sendToProfilePage);
     }
 
-
+    /**
+     * Following 3 methods send the cuisinier user towards the requested page based
+     * on the page the user selected (order repas page, meal profile page, order request page).
+     * */
 
     public void sendToRepasPage(View view){
         Intent intent = new Intent(this, RepasActivity.class);

@@ -25,6 +25,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * This is the screen for a client account where
+ * they can search for meals and see meals that corresponds the most to what they searched
+ * and where they can place an order for meals
+ * */
+
 public class SearchMealsActivity extends AppCompatActivity {
 
     private ListView listViewOfMeals;

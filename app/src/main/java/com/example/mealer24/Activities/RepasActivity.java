@@ -25,6 +25,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.LinkedList;
 
+/**
+ * This is the screen for a cuisinier account where
+ * they can make changes to their repas which consists of
+ * the status of a repas (if it is a repas du jour or not),
+ * add/remove repas if all conditions are satisfied.
+ * */
+
 public class RepasActivity extends AppCompatActivity {
     private TextView mesRepas_in_text;
     private ListView listeDeRepas;
@@ -138,7 +145,7 @@ public class RepasActivity extends AppCompatActivity {
         });
     }
 
-
+    //removes specified repas from the menu of the cook unless it's a meal that is currently a repas du jour
     private void removeRepas(String id){
         DatabaseReference repasToRemove = db.child(id);
         repasToRemove.addListenerForSingleValueEvent(new ValueEventListener() {

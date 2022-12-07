@@ -14,6 +14,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * Screen for cook to see and change their account info
+ * */
 public class ProfileActivity extends AppCompatActivity {
     private TextView firstname;
     private TextView lastname;

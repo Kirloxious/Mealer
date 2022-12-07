@@ -24,7 +24,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.LinkedList;
-
+/**
+ * This is the screen for a cuisinier account where
+ * they can make changes to the status of a repas to remove it
+ * from the "list" of repas du jour and see all their current list of repas du jour.
+ **/
 public class RepasActivityotd extends AppCompatActivity {
     private TextView repasTitreOTD;
     private ListView listeDeRepasOTD;
@@ -122,6 +126,7 @@ public class RepasActivityotd extends AppCompatActivity {
         });
     }
 
+    //removes the specified repas from the "list" of repas du jour but changing the status of it
     private void removeRepas(String id){
         DatabaseReference repasToRemove = db.child(id);
         repasToRemove.addListenerForSingleValueEvent(new ValueEventListener() {

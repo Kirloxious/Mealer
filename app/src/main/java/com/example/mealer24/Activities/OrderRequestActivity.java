@@ -24,6 +24,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * This is the page to view orders for both clients and cooks and will display certain differences depending
+ * on which user type (client, cuisinier) is accessing this page.
+ * For the client, it is simply where they view the status of their orders.
+ * For cooks, they view the incoming orders of which they can change the status with buttons with
+ * the corresponding status (Approved, Rejected)
+ * */
+
 public class OrderRequestActivity extends AppCompatActivity {
 
     private ListView listViewOrderRequest;
@@ -62,7 +70,7 @@ public class OrderRequestActivity extends AppCompatActivity {
         displayOrders();
     }
 
-
+    //displays orders depending on the user type (cook, client)
     private void displayOrders(){
         dbOrders.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -76,7 +84,7 @@ public class OrderRequestActivity extends AppCompatActivity {
                     if(!is_client && order.getCookEmail().equals(currentUserEmail)){
                         listOrdersRequest.add(order);
                     }
-
+                    //only add to view if order belong to the client
                     if(is_client && order.getClientEmail().equals(currentUserEmail)) {
                         listOrdersRequest.add(order);
                     }
@@ -94,7 +102,7 @@ public class OrderRequestActivity extends AppCompatActivity {
         });
     }
 
-    //pop up with change status of order button
+    //pop up with change status of order button only for the cook to use
     private void showUpdateStatusDialog(final String orderId) {
         if(is_client) return;
 
@@ -126,7 +134,7 @@ public class OrderRequestActivity extends AppCompatActivity {
             }
         });
     }
-    //update status of order
+    //update status of order that only the cook can control
     private void updateStatus(String id, String updatedStatus){
         if(is_client) return;
         DatabaseReference orderRef = dbOrders.child(id);

@@ -29,6 +29,10 @@ public class Account{
 		this.pwd= pwd;
 		logInStatus = false;
 	}
+
+	/**
+	 * get/set methodes for the class variables
+	 */
 	//Check validity of email on activity
 	public String getEmail() {
 		return email;

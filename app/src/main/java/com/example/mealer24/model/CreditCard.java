@@ -9,6 +9,7 @@ public class CreditCard {
     private String creditCardExp;
     private String creditCardCVV;
 
+    //Constructor
     public CreditCard(String creditCardNumber, String creditCardExp, String creditCardCVV){
         this.creditCardNumber = creditCardNumber;
         this.creditCardExp = creditCardExp;
@@ -17,6 +18,7 @@ public class CreditCard {
 
     }
 
+    //the following methodes are set-get methodes for the class variables
     public String getCreditCardNumber() {
         return creditCardNumber;
     }

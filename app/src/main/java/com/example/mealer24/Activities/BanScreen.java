@@ -7,6 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mealer24.R;
 
+/**
+ * This is the screen for a cook account where
+ * they see that they have been banned permanently or
+ * temporarily in which case it will display a date for when their account is no longer banned
+ * */
 public class BanScreen extends AppCompatActivity {
 
     @Override

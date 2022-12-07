@@ -81,6 +81,8 @@ public class HomeScreenAdmin extends HomeScreen {
 
 
     }
+
+    //method that sends the admin user towards the ban page
     private void sendToBanPage(View view) {
         Intent intent = new Intent(this, BanActivity.class);
         startActivity(intent);

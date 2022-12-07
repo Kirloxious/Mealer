@@ -17,6 +17,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * This is the screen for a client account where
+ * they can see their past orders
+ * */
+
 public class OrdersActivity extends AppCompatActivity {
 
     private DatabaseReference dbOrders;

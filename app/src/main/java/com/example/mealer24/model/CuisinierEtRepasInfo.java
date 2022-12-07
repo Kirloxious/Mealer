@@ -1,11 +1,14 @@
-package com.example.mealer24.Activities;
+package com.example.mealer24.model;
 
 import android.widget.ArrayAdapter;
 
 import com.example.mealer24.model.Cuisinier;
 import com.example.mealer24.model.Repas;
 
+//class to contain the combination of infos of both the cook and meal
+
 public class CuisinierEtRepasInfo {
+    //initializing variables
     private String nomCuisinier;
     private String cuisinierAddress;
     private String cuisinierDescription;
@@ -17,6 +20,7 @@ public class CuisinierEtRepasInfo {
     private String listeAllergies;
     private String descriptionRepas;
 
+    //Constructor
     public CuisinierEtRepasInfo(Repas meal, Cuisinier cook){
 
         nomCuisinier = cook.getNom();
@@ -31,6 +35,7 @@ public class CuisinierEtRepasInfo {
         descriptionRepas = meal.getDescription();
     }
 
+    //get methods for all the info
     public String getNomCuisinier() {
         return nomCuisinier;
     }
