@@ -34,10 +34,13 @@ public class Plaintes {
 	public String getDescription() {
 		return description;
 	}
-
+    public String getId(){
+		return plainteId;
+	}
 	public void setId(String id){
 		this.plainteId = id;
 	}
+
 
 	//methode to change the status of a cuisinier from "travaille" to either "suspendu temporairement" ou "suspendu indéfiniment"
 	public void changeCuisinierStatus() {
